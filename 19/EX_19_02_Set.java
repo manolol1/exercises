@@ -80,7 +80,7 @@ public class EX_19_02_Set {
             only1Length++;
          }
       }
-      System.out.println("Menge1 ohne Menge2: " + arrayAsString(only1, only1Length));
+      System.out.println("Menge 1 ohne Menge 2: " + arrayAsString(only1, only1Length));
       
       // only set2
       only2Length = 0;
@@ -96,7 +96,7 @@ public class EX_19_02_Set {
             only2Length++;
          }
       }
-      System.out.println("Menge1 ohne Menge2: " + arrayAsString(only2, only2Length));
+      System.out.println("Menge 2 ohne Menge 1: " + arrayAsString(only2, only2Length));
 
    }
    
