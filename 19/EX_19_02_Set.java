@@ -45,6 +45,7 @@ public class EX_19_02_Set {
                   ar[j] = ar[j + 1];
                }
                newLength--;
+               i--; // check again for that index, in case the next value is also Integer.MIN_VALUE
             }
          }
       }
