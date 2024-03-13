@@ -77,7 +77,9 @@ public class EX_19_01_Sort {
    }
    
    private static void mergeSort(int[] ar) {
-      if (ar.length < 2) return;
+      if (ar.length < 2) {
+         return;
+      }
       int mid = ar.length / 2;
       int[] left = new int[mid];
       int[] right = new int[ar.length - mid];
@@ -99,6 +101,7 @@ public class EX_19_01_Sort {
       merge(ar, left, right);
    }
    
+   // merges two sorted arrays into one sorted array (helper-method for mergeSort())
    private static void merge(int[] ar, int[] ar1, int[] ar2) {
       int ctr1 = 0, ctr2 = 0;
       for (int i = 0; i < ar.length; i++) {
