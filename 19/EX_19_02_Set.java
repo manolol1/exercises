@@ -26,9 +26,6 @@ public class EX_19_02_Set {
       int[] only2 = new int[set2.length];
       int only2Length;
       
-      System.out.println("Menge 1: " + arrayAsString(set1, set1.length));
-      System.out.println("Menge 2: " + arrayAsString(set2, set2.length));
-      
       int set1Length = duplicateCheck(set1, "Menge 1");
       int set2Length = duplicateCheck(set2, "Menge 2");
       
