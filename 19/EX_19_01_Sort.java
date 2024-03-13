@@ -3,7 +3,7 @@
 * Datum:          12.03. 2024
 * HUE:            19
 * Bsp:            01
-* Beschreibung:   Sortieren mit BubbleSort, SelectionSort und InsertionSort
+* Beschreibung:   Sortieren mit BubbleSort, SelectionSort, InsertionSort und MergeSort
 ***************************************************************************/
 
 public class EX_19_01_Sort {
@@ -66,7 +66,7 @@ public class EX_19_01_Sort {
    
    private static void insertionSort(int[] ar) {
       for (int i = 1; i < ar.length; i++) {
-         int currNum = ar[i];
+         int currNum = ar[i]; 
          int j = i - 1;
          while (j >= 0 && ar[j] > currNum) {
             ar[j + 1] = ar[j]; // shift right
