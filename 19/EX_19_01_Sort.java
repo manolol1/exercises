@@ -12,6 +12,7 @@ public class EX_19_01_Sort {
       int[] ar1 = randomArray(LENGTH, LB, UB);
       int[] ar2 = randomArray(LENGTH, LB, UB);
       int[] ar3 = randomArray(LENGTH, LB, UB);
+      int[] ar4 = randomArray(LENGTH, LB, UB);
       
       System.out.println("Unsortiert: " + arrayAsString(ar1));
       bubbleSort(ar1);
@@ -23,7 +24,11 @@ public class EX_19_01_Sort {
       
       System.out.println("Unsortiert: " + arrayAsString(ar3));
       insertionSort(ar3);
-      System.out.println("InsertionSort: " + arrayAsString(ar3));
+      System.out.println("InsertionSort: " + arrayAsString(ar3) + "\n");
+      
+      System.out.println("Unsortiert: " + arrayAsString(ar4));
+      mergeSort(ar4);
+      System.out.println("MergeSort: " + arrayAsString(ar4));
    }
    
    private static void bubbleSort(int[] ar) {
@@ -68,6 +73,52 @@ public class EX_19_01_Sort {
             j--;
          }
          ar[j + 1] = currNum;
+      }
+   }
+   
+   private static void mergeSort(int[] ar) {
+      if (ar.length < 2) return;
+      int mid = ar.length / 2;
+      int[] left = new int[mid];
+      int[] right = new int[ar.length - mid];
+      
+      // copy first half of ar into left
+      for (int i = 0; i < mid; i++) {
+         left[i] = ar[i];
+      }
+      
+      // copy second half of ar into right
+      for (int i = mid; i < ar.length; i++) {
+         right[i - mid] = ar[i];
+      }
+      
+      // split up both halfs again (recursively)
+      mergeSort(left);
+      mergeSort(right);
+      
+      merge(ar, left, right);
+   }
+   
+   private static void merge(int[] ar, int[] ar1, int[] ar2) {
+      int ctr1 = 0, ctr2 = 0;
+      for (int i = 0; i < ar.length; i++) {
+         if (ctr1 < ar1.length && ctr2 < ar2.length) {
+            if (ar1[ctr1] < ar2[ctr2]) {
+               ar[i] = ar1[ctr1];
+               ctr1++;
+            } else {
+               ar[i] = ar2[ctr2];
+               ctr2++;
+            }
+         } else {
+            if (ctr1 < ar1.length) {
+               ar[i] = ar1[ctr1];
+               ctr1++;
+            } else {
+               ar[i] = ar2[ctr2];
+               ctr2++;
+            }
+         }
       }
    }
    

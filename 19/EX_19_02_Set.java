@@ -3,7 +3,7 @@
 * Datum:          12.03. 2024
 * HUE:            19
 * Bsp:            02
-* Beschreibung:   Mengen
+* Beschreibung:   Mengen (Durchschnitt, Vereinigung, ...)
 ***************************************************************************/
 
 public class EX_19_02_Set {
@@ -12,9 +12,9 @@ public class EX_19_02_Set {
       int[] set1 = {1, 10, 3, 10, 128, 10, 7, 9};
       int[] set2 = {10, 9, 87, 55, 1, 76, 76, 4, 5, 10};
       
-      final int MAX_LENGTH = (set1.length > set2.length) ? set1.length : set2.length;
+      final int MIN_LENGTH = (set1.length > set2.length) ? set2.length : set1.length;
       
-      int[] intersection = new int[MAX_LENGTH];
+      int[] intersection = new int[MIN_LENGTH];
       int intersectionLength;
       
       int[] combined = new int[set1.length + set2.length];
