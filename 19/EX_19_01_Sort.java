@@ -78,7 +78,7 @@ public class EX_19_01_Sort {
    
    private static void mergeSort(int[] ar) {
       if (ar.length < 2) {
-         return;
+         return; // sorting done
       }
       int mid = ar.length / 2;
       int[] left = new int[mid];
@@ -106,7 +106,7 @@ public class EX_19_01_Sort {
       int ctr1 = 0, ctr2 = 0;
       for (int i = 0; i < ar.length; i++) {
          if (ctr1 < ar1.length && ctr2 < ar2.length) {
-            if (ar1[ctr1] < ar2[ctr2]) {
+            if (ar1[ctr1] <= ar2[ctr2]) {
                ar[i] = ar1[ctr1];
                ctr1++;
             } else {
