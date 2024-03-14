@@ -4,17 +4,32 @@ public class SortingTime {
       int ub = 2_000_000_000;
       int length;
       
+      length = 20_000;
+      bubbleSortTime(lb, ub, length);
+      
       length = 100_000;
-      bubbleSort(lb, ub, length);
+      selectionSortTime(lb, ub, length);
    }
    
-   private static void bubbleSort(int lb, int ub, int length) {
+   private static void bubbleSortTime(int lb, int ub, int length) {
       int[] ar = randomArray(length, lb, ub);
       
       long start, finish, time;
       
       start = System.currentTimeMillis();
       
+      bubbleSort(ar);
+      
+      finish = System.currentTimeMillis();
+      time = finish - start;
+      
+      System.out.println("[BubbleSort]");
+      System.out.println("Array Length: " + length);
+      System.out.print("Time: " + time + "ms");
+      System.out.println(" (" + time / 1000 + "s " + time % 1000 + "ms)\n");
+   }
+   
+   private static void bubbleSort(int[] ar) {
       boolean done = false;
       int temp;
       while (!done) {
@@ -28,14 +43,28 @@ public class SortingTime {
             }
          }
       }
+   }
+   
+   private static void selectionSortTime(int lb, int ub, int length) {
+      int[] ar = randomArray(length, lb, ub);
       
+      long start, finish, time;
+      
+      start = System.currentTimeMillis();
+      
+      selectionSort(ar);
+            
       finish = System.currentTimeMillis();
       time = finish - start;
       
-      System.out.println("[BubbleSort]");
+      System.out.println("[SelectionSort]");
       System.out.println("Array Length: " + length);
-      System.out.println("Time: " + time + "ms");
-      System.out.print(" - " + time / 1000 + "s " + time % 1000 + "ms\n");
+      System.out.print("Time: " + time + "ms");
+      System.out.println(" (" + time / 1000 + "s " + time % 1000 + "ms)\n");
+   }
+   
+   private static void selectionSort(int[] ar) {
+   
    }
    
    private static int[] randomArray(int length, int lb, int ub) {
