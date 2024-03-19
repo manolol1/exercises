@@ -31,6 +31,9 @@ public class EX_19_01_Sort {
       System.out.println("MergeSort: " + arrayAsString(ar4));
    }
    
+   // BubbleSort: slow, but very easy to implement, sorted "in-place" (no additional array)
+   // Time Complexity: O(n²) - quadratic increase in time (very bad for large arrays)
+   // Space Complexity: O(1) - no additional memory needed as array size increases.
    private static void bubbleSort(int[] ar) {
       boolean done = false;
       int temp;
@@ -47,6 +50,9 @@ public class EX_19_01_Sort {
       }
    }
    
+   // SelectionSort: generally a bit faster than BubbleSort, sorted "in-place"
+   // Time Complexity: O(n²)
+   // Space Complexity: O(1)
    private static void selectionSort(int[] ar) {
       int minIndex, temp;
       for (int i = 0; i < ar.length - 1; i++) {
@@ -64,6 +70,9 @@ public class EX_19_01_Sort {
       }
    }
    
+   // InsertionSort: still slow, but usually faster than SelectionSort, sorted "in-place"
+   // Time Complexity: O(n²)
+   // Space Complexity: O(1)
    private static void insertionSort(int[] ar) {
       for (int i = 1; i < ar.length; i++) {
          int currNum = ar[i]; 
@@ -76,10 +85,14 @@ public class EX_19_01_Sort {
       }
    }
    
+   // MergeSort: recursive, "Divide and Conquer"-algorithm, much faster than the other 3.
+   // Time Complexity: O(n*log(n)) - required time increases slightly more than linearly.
+   // Space Complexity: O(n) - required additional memory increases linearly with array size.
    private static void mergeSort(int[] ar) {
       if (ar.length < 2) {
          return; // sorting done
       }
+      
       int mid = ar.length / 2;
       int[] left = new int[mid];
       int[] right = new int[ar.length - mid];
