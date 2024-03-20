@@ -18,7 +18,6 @@ public class EX_20_04_SnailRace {
       
       clearScreen();
       
-      // ASCII-art (looks very weird as code or on paper but normal in the console)
       System.out.println("   _____  _____ _    _ _   _ ______ _____ _  ________ _   _ _____  ______ _   _ _   _ ______ _   _ ");
       System.out.println("  / ____|/ ____| |  | | \\ | |  ____/ ____| |/ /  ____| \\ | |  __ \\|  ____| \\ | | \\ | |  ____| \\ | |");
       System.out.println(" | (___ | |    | |__| |  \\| | |__ | |    | ' /| |__  |  \\| | |__) | |__  |  \\| |  \\| | |__  |  \\| |");
@@ -30,13 +29,38 @@ public class EX_20_04_SnailRace {
       clearScreen();
       
       Player[] players = new Player[PLAYER_NUMBER];
+      s.nextLine(); // remove last return from key buffer
       
       // create new players
       for (int i = 0; i < PLAYER_NUMBER; i++) {
          players[i] = new Player(i);
       }
       
-      printField(players);
+      while (true) {
+         for (int i = 0; i < PLAYER_NUMBER; i++) {
+            clearScreen();
+            printField(players);
+            System.out.println("\nSpieler " + i + " ist dran.");
+            System.out.println("Druecke Enter zum wuerfeln!");
+            s.nextLine();
+            
+            clearScreen();
+            players[i].roll();
+
+            System.out.println();
+            printField(players);
+            System.out.println("\nDuecke Enter, um fortzufahren.");
+            s.nextLine();
+            
+            if (players[i].getPosition() >= Constants.FIELD_SIZE - 1) {
+               clearScreen();
+               printField(players);
+               System.out.println("Spieler " + i + " hat gewonnen!");
+               System.out.println("Das Spiel wird beendet.");
+               System.exit(0);
+            }
+         }
+      }
    }
    
    private static int playerNumber(Scanner s) {
