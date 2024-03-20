@@ -20,12 +20,19 @@ public class EX_20_02_Josephus {
       System.out.print("Entfernung der Personen: ");
       
       while (personsLeft > 0) {
+         // jump to the next person to "remove"
          for (int i = 0; i < p - 1;) {
-            personsIndex = (personsIndex + 1) % n;
             if (!dead[personsIndex]) {
                i++;
             }
+            personsIndex = (personsIndex + 1) % n;
          }
+         
+         // skip dead persons
+         while (dead[personsIndex]) {
+            personsIndex = (personsIndex + 1) % n;
+         }
+         
          dead[personsIndex] = true;
          personsLeft--;
          if ((personsIndex + 1) == 7) {
