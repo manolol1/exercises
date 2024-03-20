@@ -16,6 +16,8 @@ public class EX_20_04_SnailRace {
       
       final int PLAYER_NUMBER;
       
+      int round = 0;
+      
       clearScreen();
       
       System.out.println("   _____  _____ _    _ _   _ ______ _____ _  ________ _   _ _____  ______ _   _ _   _ ______ _   _ ");
@@ -37,14 +39,15 @@ public class EX_20_04_SnailRace {
       }
       
       while (true) {
+         round++;
          for (int i = 0; i < PLAYER_NUMBER; i++) {
-            clearScreen();
+            clearScreen(round);
             printField(players);
             System.out.println("\nSpieler " + i + " ist dran.");
             System.out.println("Druecke Enter zum wuerfeln!");
             s.nextLine();
             
-            clearScreen();
+            clearScreen(round);
             players[i].roll();
 
             System.out.println();
@@ -53,7 +56,7 @@ public class EX_20_04_SnailRace {
             s.nextLine();
             
             if (players[i].getPosition() >= Constants.FIELD_SIZE - 1) {
-               clearScreen();
+               clearScreen(round);
                printField(players);
                System.out.println("Spieler " + i + " hat gewonnen!");
                System.out.println("Das Spiel wird beendet.");
@@ -83,9 +86,11 @@ public class EX_20_04_SnailRace {
    }
    
    private static void clearScreen() {
-      // "clears" the screen by simply printing a lot of empty lines.
-      // Not optimal but clearing the java console seems to be pretty difficult,
-      // especially if it should work on multiple operating systems.
       System.out.println(System.lineSeparator().repeat(100));
+   }
+   
+   private static void clearScreen(int round) {
+      System.out.println(System.lineSeparator().repeat(100));
+      System.out.println("[RUNDE " + round + "]\n");
    }
 }
