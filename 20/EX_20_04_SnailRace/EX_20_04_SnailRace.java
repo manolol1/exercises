@@ -4,6 +4,7 @@
 * HUE:            20
 * Bsp:            04
 * Beschreibung:   Schneckenrennen
+* Zusätzliche Klassen: Player.java
 *********************************************/
 
 import java.util.Scanner;
@@ -27,6 +28,15 @@ public class EX_20_04_SnailRace {
       
       PLAYER_NUMBER = playerNumber(s);
       clearScreen();
+      
+      Player[] players = new Player[PLAYER_NUMBER];
+      
+      // create new players
+      for (int i = 0; i < PLAYER_NUMBER; i++) {
+         players[i] = new Player(i);
+      }
+      
+      printField(players);
    }
    
    private static int playerNumber(Scanner s) {
@@ -39,6 +49,12 @@ public class EX_20_04_SnailRace {
       } else {
          System.out.println("Ungueltige Eingabe!\n");
          return playerNumber(s); // try again
+      }
+   }
+   
+   private static void printField(Player[] players) {
+      for (int i = 0; i < players.length; i++) {
+         players[i].printField();
       }
    }
    
