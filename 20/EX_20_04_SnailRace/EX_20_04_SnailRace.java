@@ -4,7 +4,7 @@
 * HUE:            20
 * Bsp:            04
 * Beschreibung:   Schneckenrennen
-* Zusätzliche Klassen: Player.java
+* Zusätzliche Klassen: Player.java, Constants.java
 *********************************************/
 
 import java.util.Scanner;
