@@ -11,7 +11,7 @@ import java.util.Scanner;
 import java.lang.*;
 
 public class EX_20_04_SnailRace {
-   public static void main(String[] args) throws InterruptedException{
+   public static void main(String[] args) {
       Scanner s = new Scanner(System.in);
       
       final int PLAYER_NUMBER;
@@ -42,24 +42,23 @@ public class EX_20_04_SnailRace {
          round++;
          for (int i = 0; i < PLAYER_NUMBER; i++) {
             clearScreen(round);
-            printField(players);
             System.out.println("\nSpieler " + i + " ist dran.");
-            System.out.println("Druecke Enter zum wuerfeln!");
+            System.out.println("Druecke Enter zum wuerfeln!\n");
+            printField(players);
             s.nextLine();
             
             clearScreen(round);
             players[i].roll();
 
-            System.out.println();
+            System.out.println("\nDruecke Enter, um fortzufahren.\n");
             printField(players);
-            System.out.println("\nDuecke Enter, um fortzufahren.");
             s.nextLine();
             
             if (players[i].getPosition() >= Constants.FIELD_SIZE - 1) {
                clearScreen(round);
-               printField(players);
                System.out.println("Spieler " + i + " hat gewonnen!");
-               System.out.println("Das Spiel wird beendet.");
+               System.out.println("Das Spiel wird beendet.\n");
+               printField(players);
                System.exit(0);
             }
          }

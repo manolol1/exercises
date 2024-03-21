@@ -6,19 +6,19 @@
 public class Player {
    private int position = 0;
    private int playerId;
-   String fieldBorderH = "    -";
+   String fieldBorderTopBottom = "    -";
    
    public Player(int playerId) {
       for (int i = 0; i < Constants.FIELD_SIZE * 1.5 - 1; i++) {
          this.playerId = playerId;
-         fieldBorderH += "--";
+         fieldBorderTopBottom += "--";
       }
    }
    
    public void printField() {
       StringBuilder field = new StringBuilder(Constants.FIELD_SIZE * 4);
       
-      field.append(fieldBorderH + "\n" + playerId + ": |");
+      field.append(fieldBorderTopBottom + "\n" + playerId + ": |");
       for (int i = 0; i < position; i++) {
          field.append("  |");
       }
@@ -30,7 +30,7 @@ public class Player {
          field.append("  |");
       }
       
-      field.append("\n" + fieldBorderH);
+      field.append("\n" + fieldBorderTopBottom);
       
       System.out.println(field.toString());
    }
@@ -43,14 +43,16 @@ public class Player {
             System.out.println("Spieler " + playerId + " geht zum Start zurueck.");
             position = 0;
          } else {
+         
             System.out.println("Spieler " + playerId + " geht um 3 Felder zurueck.");
             position -= 3;
+         
          }
       } else if (roll == 6) {
          System.out.println("Zahl: 6");
          System.out.println("Spieler " + playerId + " darf erneut wuerfeln.");
          roll = randomNum(1, 6);
-         System.out.println("Zahl: " + roll);
+         System.out.println("\nNeue Zahl: " + roll);
          System.out.println("Spieler " + playerId + " geht um " + roll + " Felder weiter.");
          position += roll;
       } else {
