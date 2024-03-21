@@ -67,10 +67,10 @@ public class EX_20_04_SnailRace {
    
    private static int playerNumber(Scanner s) {
       int players = 0;
-      System.out.print("Spielerzahl (2-6): ");
+      System.out.print("Spielerzahl (2-8): ");
       players = s.nextInt();
       
-      if (players >= 2 && players <= 6) {
+      if (players >= 2 && players <= 8) {
          return players;
       } else {
          System.out.println("Ungueltige Eingabe!\n");
