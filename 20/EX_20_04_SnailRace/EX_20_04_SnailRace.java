@@ -54,6 +54,7 @@ public class EX_20_04_SnailRace {
             printField(players);
             s.nextLine();
             
+            // check winning condition
             if (players[i].getPosition() >= Constants.FIELD_SIZE - 1) {
                clearScreen(round);
                System.out.println("Spieler " + i + " hat gewonnen!");

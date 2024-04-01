@@ -3,7 +3,7 @@
 * Datum:          20.03. 2024
 * HUE:            20
 * Bsp:            03
-* Beschreibung:   
+* Beschreibung:   Mathematische Wahrscheinlichkeit
 *********************************************/
 
 public class EX_20_03_Birthday {
@@ -27,7 +27,6 @@ public class EX_20_03_Birthday {
          
          percent = (double) (duplicates * 100) / ATTEMPTS;
          
-         clearScreen();
          System.out.printf("%-17d%6d / %-10d%.2f%%\n",STUDENTS[i], duplicates, ATTEMPTS, percent);
       }
    }
