@@ -8,7 +8,6 @@
 *********************************************/
 
 import java.util.Scanner;
-import java.lang.*;
 
 public class EX_20_04_SnailRace {
    public static void main(String[] args) {
@@ -49,7 +48,6 @@ public class EX_20_04_SnailRace {
             
             clearScreen(round);
             players[i].roll();
-
             System.out.println("\nDruecke Enter, um fortzufahren.\n");
             printField(players);
             s.nextLine();
