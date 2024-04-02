@@ -12,7 +12,6 @@ public class EX_20_02_Josephus {
       int personsLeft = n;
       int personsIndex = 0;
       boolean[] dead = new boolean[n];
-      int o;
       
       System.out.println("Anzahl der Personen (n): " + n);
       System.out.println("Streichungen (p): " + p);
@@ -35,9 +34,6 @@ public class EX_20_02_Josephus {
          
          dead[personsIndex] = true;
          personsLeft--;
-         if ((personsIndex + 1) == 7) {
-            o = 0;
-         }
          System.out.print((personsIndex + 1) + ((personsLeft != 0) ? " - " : ""));
       }
    }
