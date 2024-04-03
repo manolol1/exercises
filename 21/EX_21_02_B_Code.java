@@ -44,6 +44,29 @@ public class EX_21_02_B_Code {
       return result.toString();
    }
    
+   private static String decrypt(String in) {
+      StringBuilder result = new StringBuilder(in.length());
+      
+      char firstVocal;
+      for (int i = 0; i < in.length() - 3; i++) {
+         // find beginning vocal
+         if (isVocal(in.charAt(i))) {
+            firstVocal = in.charAt(i);
+         } else {
+            result.append(in.charAt[i]);
+            continue;
+         }
+         
+         if (in.charAt(i + 1) == REPLACEMENT) {
+            if (in.charAt(i + 2) == firstVocal) {
+               
+            }
+         }
+      }
+      
+       return result.toString();
+   }
+   
    private static boolean isVocal(char ch) {
       final char[] VOCALS = {'A', 'I', 'U', 'E', 'O'};
       
