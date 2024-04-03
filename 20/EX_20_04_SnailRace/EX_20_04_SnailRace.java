@@ -84,11 +84,11 @@ public class EX_20_04_SnailRace {
    }
    
    private static void clearScreen() {
-      System.out.println(System.lineSeparator().repeat(100));
+      System.out.println("\n".repeat(100));
    }
    
    private static void clearScreen(int round) {
-      System.out.println(System.lineSeparator().repeat(100));
+      System.out.println("\n".repeat(100));
       System.out.println("[RUNDE " + round + "]\n");
    }
 }
