@@ -19,8 +19,11 @@ public class EX_21_02_B_Code {
       System.out.print("Eingabe: ");
       INPUT = s.nextLine();
       
-      System.out.print(REPLACEMENT + "-Sprache: ");
-      System.out.println(encrypt(INPUT));
+      String encrypted = encrypt(INPUT);
+      String decrypted = decrypt(encrypted);
+      System.out.println("Verschluesselt: " + encrypted);
+      System.out.println("Entschluesselt: " + decrypted);
+      
    }
    
    private static String encrypt(String in) {
@@ -48,23 +51,17 @@ public class EX_21_02_B_Code {
       StringBuilder result = new StringBuilder(in.length());
       
       char firstVocal;
-      for (int i = 0; i < in.length() - 3; i++) {
-         // find beginning vocal
-         if (isVocal(in.charAt(i))) {
-            firstVocal = in.charAt(i);
+      for (int i = 0; i < in.length(); ) {
+         if (!isVocal(in.charAt(i))) {
+            result.append(in.charAt(i));
+            i++; // move on to next char
          } else {
-            result.append(in.charAt[i]);
-            continue;
-         }
-         
-         if (in.charAt(i + 1) == REPLACEMENT) {
-            if (in.charAt(i + 2) == firstVocal) {
-               
-            }
+            result.append(in.charAt(i));
+            i += 3; // skip replacement and repeated char and move on
          }
       }
       
-       return result.toString();
+      return result.toString();
    }
    
    private static boolean isVocal(char ch) {
