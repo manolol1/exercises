@@ -7,6 +7,7 @@
 *********************************************/
 
 import java.util.Scanner;
+import java.io.*;
 
 public class EX_21_03_TextAnalysis {
    public static void main(String[] args){
@@ -16,8 +17,14 @@ public class EX_21_03_TextAnalysis {
       
       final String INPUT;
       
-      System.out.print("Eingabe: ");
-      INPUT = s.nextLine().toUpperCase();
+      if (args.length == 1) {
+         INPUT = readFile(args[0]).toUpperCase();
+      } else {
+         System.out.print("Eingabe: ");
+         INPUT = s.nextLine().toUpperCase();
+      }
+      
+      System.out.println();
       
       // count letters
       for (int i = 0; i < INPUT.length(); i++) {
@@ -48,5 +55,25 @@ public class EX_21_03_TextAnalysis {
       }
       
       return result.toString();
+   }
+   
+   private static String readFile(String filePath) {
+      String result = "";
+      
+      try {
+         File file = new File(filePath);
+         Scanner s = new Scanner(file);
+         
+         while (s.hasNextLine()) {
+            result += s.nextLine();
+         }
+         s.close();
+         System.out.println("Successfully read file " + filePath);
+      } catch (FileNotFoundException e) {
+         System.out.println("Could not read file.");
+         System.exit(1);
+      }
+      
+      return result;
    }
 }
