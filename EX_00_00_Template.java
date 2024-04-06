@@ -1,9 +1,9 @@
 /********************************************
-* Name:           Mario Ebenhofer
-* Datum:          01.01. 2024
-* HUE:            00
-* Bsp:            00
-* Beschreibung:   Vorlage
+* Name:          Mario Ebenhofer
+* Date:          01.01. 2024
+* HUE:
+* EX:            0
+* Description:
 *********************************************/
 
 import java.util.Scanner;
