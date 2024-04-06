@@ -67,6 +67,7 @@ public class EX_21_03_TextAnalysis {
          while (s.hasNextLine()) {
             result += s.nextLine();
          }
+         
          s.close();
          System.out.println("Successfully read file " + filePath);
       } catch (FileNotFoundException e) {
