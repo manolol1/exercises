@@ -6,6 +6,12 @@ public class EX_String {
       
       System.out.println(str);
       System.out.println(swapCase(str));
+      
+      char ch = 'A';
+      System.out.println(ch + ": " + getUnicode(ch));
+      
+      char ch1 = '\u00A1';
+      System.out.println(ch1);
    }
    
    private static String removeNonAlphabeticalCharacters(String in) {
@@ -48,5 +54,9 @@ public class EX_String {
       }
       
       return false;
+   }
+   
+   private static int getUnicode(char in) {
+      return (int) in;
    }
 }
