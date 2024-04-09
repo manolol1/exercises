@@ -30,7 +30,7 @@ public class EX_21_03_TextAnalysis {
       // count letters
       for (char ch : INPUT.toCharArray()) {
          if (ch >= 'a' && ch <= 'z') {
-            count[ch - 96]++;
+            count[ch - 97]++;
          }
       }
       
