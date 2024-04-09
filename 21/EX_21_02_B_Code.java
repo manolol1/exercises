@@ -38,7 +38,7 @@ public class EX_21_02_B_Code {
          } 
          else if (arg.charAt(0) == '-') {
             System.out.println(INVALID_ARGS);
-            System.exit(0);
+            System.exit(1);
          }else {
             arg1 = arg;
          }
@@ -77,6 +77,7 @@ public class EX_21_02_B_Code {
          }
       } else {
          System.out.println(INVALID_ARGS);
+         System.exit(1);
       }
    }
    
