@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class EX_21_02_B_Code {
    static final char DEFAULT_REPLACEMENT = 'B';
    
-   static char replacement = DEFAULT_REPLACEMENT; // can be changed using arg0 line arg1s
+   static char replacement = DEFAULT_REPLACEMENT;
    
    public static void main(String[] args){
       final String INVALID_ARGS = "Invalid arguments. Use --help for a list of all available commands.";
@@ -22,7 +22,7 @@ public class EX_21_02_B_Code {
       }
    
       String arg0 = "default";
-      String arg1 = null;
+      String arg1 = null; // will not be used if null
       String arg2 = null;
       
       // set arguments to their corresponding variable
@@ -52,10 +52,12 @@ public class EX_21_02_B_Code {
       // custom replacement
       if (arg2 != null) {
          if (arg2.length() > 15) {
-            System.out.println("WARNING: Replacement can only be a single character. Additional characters are ignored.");
+            System.out.println("WARNING: Replacement can only be a single character. Additional characters will be ignored.");
          }
          replacement = arg2.toUpperCase().charAt(14);
          System.out.println("Using custom replacement character: '" + replacement + "'\n");
+      } else {
+         System.out.println("Using default replacement character: " + DEFAULT_REPLACEMENT + "'\n");
       }
    
       // mode

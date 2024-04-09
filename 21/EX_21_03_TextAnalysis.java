@@ -17,6 +17,7 @@ public class EX_21_03_TextAnalysis {
       
       final String INPUT;
       
+      // read input (either from file or interactively)
       if (args.length == 1) {
          INPUT = readFile(args[0]).toUpperCase();
       } else {
