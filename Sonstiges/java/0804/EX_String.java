@@ -10,7 +10,7 @@ public class EX_String {
       char ch = 'A';
       System.out.println(ch + ": " + getUnicode(ch));
       
-      char ch1 = '\u00A1';
+      char ch1 = '\u0041';
       System.out.println(ch1);
    }
    
