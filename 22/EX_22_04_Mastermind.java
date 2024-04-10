@@ -3,7 +3,7 @@
 * Date:          10.04. 2024
 * HUE:           22
 * EX:            04
-* Description:   
+* Description:   Mastermind (game)
 *********************************************/
 
 import java.util.Scanner;
