@@ -12,10 +12,18 @@ public class EX_22_02_Caesar {
    public static void main(String[] args){
       Scanner s = new Scanner(System.in);
       
+      System.out.println(shiftLetter('a', -2));
+      
       System.out.println(encrypt("Hallo", 3));
    }
    
    private static String encrypt(String plainText, int key) {
-      StringBuilder result = new StringBuilder
+      StringBuilder result = new StringBuilder(plainText.length());
+      
+      for (char ch : plainText.toCharArray()) {
+         
+      }
+      
+      return result.toString();
    }
 }
