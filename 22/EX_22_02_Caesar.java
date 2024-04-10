@@ -3,7 +3,7 @@
 * Date:          10.04. 2024
 * HUE:           22
 * EX:            02
-* Description:   Caesarverschluesselung
+* Description:   Caesar Cypher (encrypt and decrypt)
 *********************************************/
 
 import java.util.Scanner;
