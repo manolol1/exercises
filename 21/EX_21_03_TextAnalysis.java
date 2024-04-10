@@ -17,21 +17,20 @@ public class EX_21_03_TextAnalysis {
       
       final String INPUT;
       
+      // read input (either from file or interactively)
       if (args.length == 1) {
-         INPUT = readFile(args[0]).toUpperCase();
+         INPUT = readFile(args[0]).toLowerCase();
       } else {
          System.out.print("Eingabe: ");
-         INPUT = s.nextLine().toUpperCase();
+         INPUT = s.nextLine().toLowerCase();
       }
       
       System.out.println();
       
       // count letters
-      for (int i = 0; i < INPUT.length(); i++) {
-         for (int j = 0; j < 26; j++) {
-            if (INPUT.charAt(i) == 65 + j) {
-               count[j]++;
-            }
+      for (char ch : INPUT.toCharArray()) {
+         if (ch >= 'a' && ch <= 'z') {
+            count[ch - 97]++;
          }
       }
       

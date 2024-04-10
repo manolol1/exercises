@@ -33,7 +33,7 @@ public class EX_21_04_MaxSum {
          }
       }
       
-      System.out.printf("Die groesste Teilsumme betraegt %d und reicht von Position %d bis Position %d.", maxSum, startIndex, endIndex);
+      System.out.printf("Die groesste Teilsumme betraegt %d und reicht von Position %d bis Position %d.\n", maxSum, startIndex, endIndex);
    }
    
    private static int[] randomArray(int length, int lb, int ub) {
