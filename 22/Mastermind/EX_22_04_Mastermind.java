@@ -23,7 +23,6 @@ public class EX_22_04_Mastermind {
       System.out.println("You have " + MAX_ATTEMPTS + " attempts.");
       System.out.println("Individual numbers should be seperated by a space.");
       System.out.println("Example: 1 4 6 2\n");
-      System.out.println(Arrays.toString(correct));
       
       System.out.println("Press Enter to start!");
       s.nextLine();
