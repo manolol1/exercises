@@ -128,7 +128,6 @@ public class EX_22_04_Mastermind {
       input = s.nextLine();
       
       String[] strings = input.split(" ");
-      //System.out.println(Arrays.toString(strings));
       
       try {
          for (int i = 0; i < length; i++) {
