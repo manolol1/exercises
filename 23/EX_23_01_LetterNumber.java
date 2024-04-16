@@ -11,7 +11,7 @@ public class EX_23_01_LetterNumber {
    
    public static void main(String[] args){
       // test with some random string
-      String msg = "Das ist eine Nachricht!";
+      String msg = "Das ist eine Nachricht! ABC";
       System.out.println(msg);
       String encrypted = encrypt(msg);
       System.out.println(encrypted);
@@ -54,7 +54,7 @@ public class EX_23_01_LetterNumber {
       char[] inputAr = input.toCharArray();
       
       int i = 0;
-      while (i < inputAr.length - 2) {
+      while (i < inputAr.length) {
          if (Character.isDigit(inputAr[i])) {
             String str = inputAr[i] + "" + inputAr[i + 1];
             int n = Integer.valueOf(str);
