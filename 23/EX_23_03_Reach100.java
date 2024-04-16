@@ -3,7 +3,7 @@
 * Date:          25.04. 2024
 * HUE:           23
 * EX:            03
-* Description:
+* Description:   "Reach 100" Game
 *********************************************/
 
 import java.util.Scanner;
