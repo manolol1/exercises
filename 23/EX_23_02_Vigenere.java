@@ -8,8 +8,8 @@
 
 public class EX_23_02_Vigenere {
    public static void main(String[] args){
-      String k = "SECURITY";
-      String str = encrypt("WHITEHATBLACKHAT", k);
+      String k = "Passwort123! AbC,$";
+      String str = encrypt("Pinguine sind sehr tolle Tiere.", k);
       System.out.println(str);
       str = decrypt(str, k);
       System.out.println(str);
@@ -25,6 +25,8 @@ public class EX_23_02_Vigenere {
    
    private static String vigenere(String plainText, String keyString, int mode) {
       StringBuilder result = new StringBuilder(plainText.length());
+      
+      keyString = prepareKey(keyString);
       
       char[] plainAr = plainText.toCharArray();
       char[] keyAr = keyString.toCharArray();
@@ -49,6 +51,16 @@ public class EX_23_02_Vigenere {
          }
       }
       
+      return result.toString();
+   }
+   
+   private static String prepareKey(String keyString) {
+      StringBuilder result = new StringBuilder(keyString.length());
+      for (char ch : keyString.toCharArray()) {
+         if ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z')) {
+            result.append(ch);
+         }
+      }
       return result.toString();
    }
 }
