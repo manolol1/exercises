@@ -8,7 +8,7 @@
 
 public class EX_23_02_Vigenere {
    public static void main(String[] args){
-      String k = "Passwort123! AbC,$";
+      String k = "ABC";
       String str = encrypt("Pinguine sind sehr tolle Tiere.", k);
       System.out.println(str);
       str = decrypt(str, k);
@@ -38,7 +38,7 @@ public class EX_23_02_Vigenere {
          int plainOffset = Character.isUpperCase(plainCh) ? 'A' : 'a';
          int keyOffset = Character.isUpperCase(keyCh) ? 'A' : 'a';
          
-         int key = keyCh - keyOffset;
+         int key = keyCh - keyOffset + 1;
          
          if (mode == 1) {
             key *= -1;
