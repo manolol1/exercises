@@ -15,6 +15,7 @@ public class EX_23_02_Vigenere {
       System.out.println(str);
    }
    
+   // "wrapper methods" for encrypting and decrypting
    private static String encrypt(String plainText, String keyString) {
       return vigenere(plainText, keyString, 0);
    }
@@ -23,6 +24,7 @@ public class EX_23_02_Vigenere {
       return vigenere(plainText, keyString, 1);
    }
    
+   // mode 0 for encryption, any other number for decryption
    private static String vigenere(String plainText, String keyString, int mode) {
       StringBuilder result = new StringBuilder(plainText.length());
       
@@ -40,10 +42,11 @@ public class EX_23_02_Vigenere {
          
          int key = keyCh - keyOffset + 1;
          
-         if (mode == 1) {
+         if (mode != 0) {
             key *= -1;
          }
          
+         // only encrypt letters from A-Z, ignore any other characters
          if (plainCh >= plainOffset && plainCh <= plainOffset + 26) {
             result.append((char) (((plainCh - plainOffset + key + 26) % 26) + plainOffset));
          } else {
@@ -54,6 +57,7 @@ public class EX_23_02_Vigenere {
       return result.toString();
    }
    
+   // make sure that the key only contains letters
    private static String prepareKey(String keyString) {
       StringBuilder result = new StringBuilder(keyString.length());
       for (char ch : keyString.toCharArray()) {

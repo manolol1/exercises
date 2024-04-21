@@ -13,19 +13,18 @@ public class EX_23_03_Reach100 {
       Scanner s = new Scanner(System.in);
       
       final int PLAYER_COUNT = playerCountInput(s);
-      int num = random(1, 30);
+      int num = random(1, 30); // determine starting number
       int currPlayer = 1;
       
       System.out.println("Die Zahl ist " + num + "\n");
       
-      while (num < 100) {
-         if (currPlayer > PLAYER_COUNT) {
-            currPlayer = 1;
-         }
-         
+      while (num < 100) { 
          System.out.print("Spieler " + currPlayer + "! Zahl eingeben (>=1, <= 10):\t");
          num += numInput(s, 1, 10);
          System.out.println("Die Zahl ist " + num + "\n");
+         
+         // move on to next player
+         currPlayer %= PLAYER_COUNT;
          currPlayer++;
       }
       
@@ -42,7 +41,7 @@ public class EX_23_03_Reach100 {
          return players;
       } else {
          System.out.println("Spielerzahl muss > 1 sein!\n");
-         return playerCountInput(s);
+         return playerCountInput(s); // try again
       }
    }
    
@@ -54,7 +53,7 @@ public class EX_23_03_Reach100 {
       } else {
          System.out.println("Ungueltige Eingabe!");
          System.out.println("Erneut versuchen: ");
-         return numInput(s, lb, ub);
+         return numInput(s, lb, ub); // try again
       }
    }
    
