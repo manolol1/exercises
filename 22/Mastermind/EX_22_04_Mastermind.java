@@ -42,7 +42,7 @@ public class EX_22_04_Mastermind {
          boolean[] redChecked = new boolean[LENGTH];
          boolean[] whiteChecked = new boolean[LENGTH];
       
-         // check if number is in currect position
+         // check if number is in correct position
          for (int j = 0; j < LENGTH; j++) {
             if (currAttempt[j] == correct[j]) {
                red++;
