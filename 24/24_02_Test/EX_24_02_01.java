@@ -6,6 +6,8 @@
 * Description:   Test (1AHIF)
 *********************************************/
 
+import java.util.Scanner;
+
 public class EX_24_02_01 {
    public static void main(String[] args){
       int[] ar = new int[20];
@@ -18,6 +20,16 @@ public class EX_24_02_01 {
       
       shiftLeft(ar); 
       printArray(ar, 4);
+      System.out.println();
+      
+      int n = userInput(0, 20);
+      
+      arPrintMinValue(ar, n);
+      
+      sort(ar);
+      printArray(ar, 5);
+      
+      printArray(cumulate(ar), 5);
    }
    
    private static void fillArray(int[] ar, int lb, int ub) {
@@ -60,6 +72,65 @@ public class EX_24_02_01 {
          ar[i] = ar[i + 1];
       }
       ar[ar.length - 1] = temp;
+   }
+   
+   private static int userInput(Scanner s, int lb, int ub) {
+      System.out.printf("Enter a number (%d-%d): ", lb, ub);
+      int n = s.nextInt();
+      
+      if (n >= lb && n <= ub) {
+         s.close();
+         return n;
+      } else {
+         System.out.println("Invalid input. Retry!\n");
+         return userInput(s, lb, ub);
+      }
+   }
+   
+   private static int userInput(int lb, int ub) {
+      Scanner s = new Scanner(System.in);
+      return userInput(s, lb, ub);
+   }
+   
+   private static void arPrintMinValue(int[] ar, int minValue) {
+      minValue = Math.abs(minValue);
+      for (int i = 0; i < ar.length; i++) {
+         if (Math.abs(ar[i]) > minValue) {
+            System.out.print(ar[i] + "  "); // assuming that actual value should be printed (not the absolute one)
+         }
+      }
+      System.out.println();
+   }
+   
+   // sort an array using SelectionSort
+   private static void sort(int[] ar) {
+      for (int i = 0; i < ar.length; i++) {
+         int min = i;
+         
+         for (int j = i + 1; j < ar.length; j++) {
+            if (ar[j] < ar[min]) {
+               min = j;
+            }
+         }
+         
+         // swap
+         int temp = ar[i];
+         ar[i] = ar[min];
+         ar[min] = temp;
+      }
+   }
+   
+   private static int[] cumulate(int[] ar) {
+      int[] solution = new int[ar.length];
+      
+      int sum = 0;
+      
+      for (int i = 0; i < ar.length; i++) {
+         sum += ar[i];
+         solution[i] = sum;
+      }
+      
+      return solution;
    }
    
    private static int random(int lb, int ub) {
