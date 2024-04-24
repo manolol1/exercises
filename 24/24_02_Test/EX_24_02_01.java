@@ -49,7 +49,7 @@ public class EX_24_02_01 {
    
    private static void shiftLeft(int[] ar) {
       while (ar[0] < 0) {
-         shiftLeft(ar);
+         shiftLeftOnce(ar);
       }
    }
    
