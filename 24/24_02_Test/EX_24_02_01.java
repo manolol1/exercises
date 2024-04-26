@@ -14,21 +14,31 @@ public class EX_24_02_01 {
       
       fillArray(ar, -20, 20);
       
+      System.out.println("filling:");
       printArray(ar, 4);
+      System.out.println();
       
-      System.out.println("\nMax: " + max(ar));
+      System.out.println("Max: " + max(ar));
+      System.out.println();
       
+      System.out.println("shift left:");
       shiftLeft(ar); 
       printArray(ar, 4);
       System.out.println();
       
       int n = userInput(0, 20);
+      System.out.println();
       
+      System.out.println("absolute values above " + n + ":");
       arPrintMinValue(ar, n);
+      System.out.println();
       
+      System.out.println("sorting:");
       sort(ar);
       printArray(ar, 5);
+      System.out.println();
       
+      System.out.println("cumulating:");
       printArray(cumulate(ar), 5);
    }
    
@@ -40,7 +50,7 @@ public class EX_24_02_01 {
    
    private static void printArray(int[] ar, int valuesPerLine) {
       for (int i = 0; i < ar.length; i++) {
-         if (i % valuesPerLine == 0) {
+         if (i % valuesPerLine == 0 && i != 0) {
             System.out.println();
          }
          
