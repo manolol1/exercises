@@ -14,13 +14,13 @@ public class EX_24_02_02 {
       int[] arr2 = {3,10,17,24,31,38,45,52};
       int[] arr3 = {-10, -5, 0, 5, 10, 15};
       
-      checkSequence(arr1);
+      printSequenceCheck(arr1);
       System.out.println();
       
-      checkSequence(arr2);
+      printSequenceCheck(arr2);
       System.out.println();
       
-      checkSequence(arr3);
+      printSequenceCheck(arr3);
    }
    
    private static boolean isSequence(int[] ar) {
@@ -45,7 +45,7 @@ public class EX_24_02_02 {
       System.out.println();
    }
    
-   private static void checkSequence(int[] ar) {
+   private static void printSequenceCheck(int[] ar) {
       System.out.println("Array");
       printArray(ar);
       System.out.println("Der Abstand ist" + (isSequence(ar) ? "" : " nicht") + " immer gleich.");
