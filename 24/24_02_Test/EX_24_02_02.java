@@ -48,6 +48,6 @@ public class EX_24_02_02 {
    private static void checkSequence(int[] ar) {
       System.out.println("Array");
       printArray(ar);
-      System.out.println("Der Abstand ist " + (isSequence(ar) ? "" : "nicht") + " immer gleich.");
+      System.out.println("Der Abstand ist" + (isSequence(ar) ? "" : " nicht") + " immer gleich.");
    }
 }
