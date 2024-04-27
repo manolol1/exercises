@@ -12,14 +12,25 @@ public class EX_24_02_04 {
    public static void main(String[] args){
       int[] solution = eratosthenes(userInput(10, 1000));
       
-      printArray(solution, 1000);
+      printArray(solution, 10);
    }
    
    private static int[] eratosthenes(int ub) {
       int[] ar = new int[ub - 1];
       
+      // fill an array with numbers from 2 to ub
       for (int i = 0; i < ar.length; i++) {
          ar[i] = i + 2;
+      }
+      
+      for (int i = 0; i <= ub / 2; i++) {
+         if (ar[i] != 0) {
+            for (int j = i + 1; j < ar.length; j++) {
+               if (ar[j] % ar[i] == 0) {
+                  ar[j] = 0;
+               }
+            }
+         }
       }
       
       return removeZeroes(ar);
@@ -68,14 +79,40 @@ public class EX_24_02_04 {
    }
    
    private static void printArray(int[] ar, int valuesPerLine) {
+      // calculate reqired spacing, so that all values are nicely alligned
+      int digitSpacing = String.valueOf(max(ar)).length();
+      // also account for the - in negative numbers
+      if (min(ar) < 0) {
+         digitSpacing++;
+      }
+      
       for (int i = 0; i < ar.length; i++) {
          if (i % valuesPerLine == 0 && i != 0) {
             System.out.println();
          }
          
-         System.out.print(ar[i] + "  ");
+         System.out.printf("%-" + (digitSpacing + 3) + "d", ar[i]);
       }
       System.out.println();
    }
    
+   private static int max(int[] ar) {
+      int max = ar[0];
+      for (int n : ar) {
+         if (n > max) {
+            max = n;
+         }
+      }
+      return max;
+   }
+   
+   private static int min(int[] ar) {
+      int min = ar[0];
+      for (int n : ar) {
+         if (n < min) {
+            min = n;
+         }
+      }
+      return min;
+   }
 }

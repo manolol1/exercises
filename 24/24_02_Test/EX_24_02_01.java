@@ -49,12 +49,19 @@ public class EX_24_02_01 {
    }
    
    private static void printArray(int[] ar, int valuesPerLine) {
+      // calculate reqired spacing, so that all values are nicely alligned
+      int digitSpacing = String.valueOf(max(ar)).length();
+      // also account for the - in negative numbers
+      if (min(ar) < 0) {
+         digitSpacing++;
+      }
+      
       for (int i = 0; i < ar.length; i++) {
          if (i % valuesPerLine == 0 && i != 0) {
             System.out.println();
          }
          
-         System.out.print(ar[i] + "  ");
+         System.out.printf("%" + (digitSpacing) + "d ", ar[i]);
       }
       System.out.println();
    }
@@ -67,6 +74,16 @@ public class EX_24_02_01 {
          }
       }
       return max;
+   }
+   
+   private static int min(int[] ar) {
+      int min = ar[0];
+      for (int n : ar) {
+         if (n < min) {
+            min = n;
+         }
+      }
+      return min;
    }
    
    private static void shiftLeft(int[] ar) {
