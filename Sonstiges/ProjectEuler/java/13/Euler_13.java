@@ -1,6 +1,6 @@
 // projecteuler.net
 // Problem 13
-// Sum Square Difference
+// Large Sum
 
 import java.util.*;
 import java.io.*;
