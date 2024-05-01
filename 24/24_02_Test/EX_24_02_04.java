@@ -81,6 +81,7 @@ public class EX_24_02_04 {
    private static void printArray(int[] ar, int valuesPerLine) {
       // calculate reqired spacing, so that all values are nicely aligned
       int digitSpacing = String.valueOf(max(ar)).length();
+      
       // also account for the - in negative numbers
       if (min(ar) < 0) {
          digitSpacing++;

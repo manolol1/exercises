@@ -51,6 +51,7 @@ public class EX_24_02_01 {
    private static void printArray(int[] ar, int valuesPerLine) {
       // calculate reqired spacing, so that all values are nicely alligned
       int digitSpacing = String.valueOf(max(ar)).length();
+      
       // also account for the - in negative numbers
       if (min(ar) < 0) {
          digitSpacing++;
@@ -87,6 +88,11 @@ public class EX_24_02_01 {
    }
    
    private static void shiftLeft(int[] ar) {
+      if (max(ar) < 0) {
+         System.out.println("Not shifting left, because array doesn't contain any elements > 0");
+         return;
+      }
+      
       while (ar[0] < 0) {
          shiftLeftOnce(ar);
       }
