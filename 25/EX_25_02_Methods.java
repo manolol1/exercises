@@ -17,7 +17,7 @@ public class EX_25_02_Methods {
       System.out.println(isPrime(7));
       System.out.println(nextPrime(5));
       System.out.println(calcFact(5));
-      System.out.println(factorial(1234));
+      System.out.println(calcFactBig(1234));
       System.out.println(calcPow(5, 3));
       printFactor(1232143);
       System.out.println(digitSum(125));
@@ -93,7 +93,7 @@ public class EX_25_02_Methods {
       return res;
    }
    
-   private static BigInteger factorial(int n) {
+   private static BigInteger calcFactBig(int n) {
       BigInteger result = new BigInteger("1");
       
       for (int i = 2; i <= n; i++) {
