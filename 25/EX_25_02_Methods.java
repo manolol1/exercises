@@ -21,6 +21,8 @@ public class EX_25_02_Methods {
       System.out.println(calcPow(5, 3));
       printFactor(1232143);
       System.out.println(digitSum(125));
+      System.out.println(binExp(2, 5));
+      System.out.println(binExpBig(new BigInteger("5"), new BigInteger("53433")));
    }
    
    private static int countDivider(int n) {
@@ -109,6 +111,39 @@ public class EX_25_02_Methods {
          res *= n;
       }
       return res;
+   }
+   
+   private static int binExp(int n, int exponent) {
+      int power = n;
+      n = 1;
+      
+      while (exponent != 0) {
+         if (exponent % 2 != 0) {
+            n *= power;
+         }
+         
+         power *= power;
+         exponent /= 2;
+      }
+      
+      return n;
+   }
+   
+   private static BigInteger binExpBig(BigInteger n, BigInteger exponent) {
+      BigInteger power = n;
+      n = BigInteger.ONE;
+      
+      while (!exponent.equals(BigInteger.ZERO)) {
+         //System.out.println(exponent.mod(BigInteger.TWO));
+         if (!exponent.mod(BigInteger.TWO).equals(BigInteger.ZERO)) {
+            n = n.multiply(power);
+         }
+         
+         power = power.multiply(power);
+         exponent = exponent.divide(BigInteger.TWO);
+      }
+      
+      return n;
    }
    
    private static void printFactor(int n) {
