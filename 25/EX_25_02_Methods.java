@@ -134,7 +134,6 @@ public class EX_25_02_Methods {
       n = BigInteger.ONE;
       
       while (!exponent.equals(BigInteger.ZERO)) {
-         //System.out.println(exponent.mod(BigInteger.TWO));
          if (!exponent.mod(BigInteger.TWO).equals(BigInteger.ZERO)) {
             n = n.multiply(power);
          }
