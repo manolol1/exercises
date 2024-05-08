@@ -43,6 +43,6 @@ public class EX_25_01_Memory {
    }
    
    private static void clear() {
-      System.out.print("\n".repeat(20));
+      System.out.print("\n".repeat(30));
    }
 }
