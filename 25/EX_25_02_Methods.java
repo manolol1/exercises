@@ -7,6 +7,7 @@
 *********************************************/
 
 import java.math.BigInteger;
+import java.util.Arrays;
 
 public class EX_25_02_Methods {
    public static void main(String[] args){
@@ -23,6 +24,8 @@ public class EX_25_02_Methods {
       System.out.println(digitSum(125));
       System.out.println(binExp(2, 5));
       System.out.println(binExpBig(new BigInteger("5"), new BigInteger("53433")));
+      int[] ar = {1, 5, 6, 9};
+      printArray(ar, ", ");
    }
    
    private static int countDivider(int n) {
@@ -170,5 +173,13 @@ public class EX_25_02_Methods {
          n /= 10;
       }
       return sum;
+   }
+   
+   private static void printArray(int[] ar, String delimiter) {
+      System.out.print(ar[0]);
+      
+      for (int i = 1; i < ar.length; i++) {
+         System.out.print(delimiter + ar[i]);
+      }
    }
 }
