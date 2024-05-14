@@ -7,7 +7,6 @@
 *********************************************/
 
 import java.math.BigInteger;
-import java.util.Arrays;
 
 public class EX_25_02_Methods {
    public static void main(String[] args){
@@ -23,9 +22,8 @@ public class EX_25_02_Methods {
       printFactor(1232143);
       System.out.println(digitSum(125));
       System.out.println(binExp(2, 5));
-      System.out.println(binExpBig(new BigInteger("5"), new BigInteger("53433")));
-      int[] ar = {1, 5, 6, 9};
-      printArray(ar, ", ");
+      System.out.println(binExpBig(new BigInteger("5"), new BigInteger("53435")));
+      printArray(randomArray(20, -10, 10), ", ");
    }
    
    private static int countDivider(int n) {
@@ -181,5 +179,19 @@ public class EX_25_02_Methods {
       for (int i = 1; i < ar.length; i++) {
          System.out.print(delimiter + ar[i]);
       }
+   }
+   
+   private static int[] randomArray(int length, int lb, int ub) {
+      int[] ar = new int[length];
+      
+      for (int i = 0; i < length; i++) {
+         ar[i] = random(lb, ub);
+      }
+      
+      return ar;
+   }
+   
+   private static int random(int lb, int ub) {
+      return (int) (Math.random() * (ub - lb + 1) + lb);
    }
 }
