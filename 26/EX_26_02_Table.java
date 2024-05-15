@@ -7,7 +7,7 @@
 *********************************************/
 
 public class EX_26_02_Table {
-   public static void main(String[] args){
+   public static void main(String[] args) {
       final int ROWS = 100, COLS = 200;
       final int LB = -99, UB = 99;
       

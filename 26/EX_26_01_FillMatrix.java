@@ -7,7 +7,7 @@
 *********************************************/
 
 public class EX_26_01_FillMatrix {
-   public static void main(String[] args){
+   public static void main(String[] args) {
       int rows = 500, cols = 800;
       
       int maxRow = String.valueOf(rows).length();

@@ -7,15 +7,15 @@
 *********************************************/
 
 public class EX_26_03_Matrix {
-   public static void main(String[] args){
-      final int ROWS = 100, COLS = 200;
-      final int LB = -99, UB = 99;
-      
-      int maxRow = String.valueOf(ROWS).length();
-      int maxCol = Math.max(String.valueOf(LB).length(), String.valueOf(UB).length());
+   public static void main(String[] args) {
+      final int ROWS = 5, COLS = 5;
+      final int LB = -5, UB = 5;
       
       int[][] ma = new int[ROWS][COLS];
       fillMatrix(ma, LB, UB);
+      printMatrix(ma);
+      
+      System.out.println(getRowSum(ma, 4));
    }
    
    private static void fillMatrix(int[][] ma, int lb, int ub) {
@@ -32,6 +32,22 @@ public class EX_26_03_Matrix {
       
       int maxRow = String.valueOf(ma.length).length();
       int maxCol = Math.max(String.valueOf(min).length(), String.valueOf(max).length());
+      
+      printMatrix(ma, maxRow, maxCol);
+   }
+   
+   private static void printMatrix(int[][] ma, int maxRow, int maxCol) {
+      StringBuilder s = new StringBuilder(maxRow * maxCol);
+      
+      for (int i = 0; i < ma.length; i++) {
+         //s.append(String.format("Zeile %" + maxRow + "d: ", i + 1));
+         for (int j = 0; j < ma[i].length; j++) {
+            s.append(String.format("%" + (maxCol + 1) + "d", ma[i][j]));
+         }
+         s.append("\n");
+      }
+      
+      System.out.println(s.toString());
    }
    
    private static int minMatrix(int[][] ma) {
@@ -62,18 +78,19 @@ public class EX_26_03_Matrix {
       return max;
    }
    
-   private static void printMatrix(int[][] ma, int maxRow, int maxCol) {
-      StringBuilder s = new StringBuilder(maxRow * maxCol);
-      
-      for (int i = 0; i < ma.length; i++) {
-         //s.append(String.format("Zeile %" + maxRow + "d: ", i + 1));
-         for (int j = 0; j < ma[i].length; j++) {
-            s.append(String.format("%" + (maxCol + 1) + "d", ma[i][j]));
-         }
-         s.append("\n");
+   private static int getRowSum(int[][] ma, int row) {
+      if (row < 0 || row > ma.length - 1) {
+         System.out.println("getRowSum() Error: row doesn't exist");
+         return -1;
       }
       
-      System.out.println(s.toString());
+      int sum = 0;
+      
+      for (int i = 0; i < ma[row].length; i++) {
+         sum += ma[row][i];
+      }
+      
+      return sum;
    }
    
    private static int random(int lb, int ub) {
