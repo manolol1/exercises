@@ -16,6 +16,10 @@ public class EX_26_03_Matrix {
       printMatrix(ma);
       
       System.out.println(getRowSum(ma, 4));
+      System.out.println(getColSum(ma, 4));
+      System.out.println(getTotalSum(ma));
+      System.out.println(getMinimum(ma));
+      System.out.println(getMaximum(ma));
    }
    
    private static void fillMatrix(int[][] ma, int lb, int ub) {
@@ -27,8 +31,8 @@ public class EX_26_03_Matrix {
    }
    
    private static void printMatrix(int[][] ma) {
-      int min = minMatrix(ma);
-      int max = maxMatrix(ma);
+      int min = getMinimum(ma);
+      int max = getMaximum(ma);
       
       int maxRow = String.valueOf(ma.length).length();
       int maxCol = Math.max(String.valueOf(min).length(), String.valueOf(max).length());
@@ -50,7 +54,7 @@ public class EX_26_03_Matrix {
       System.out.println(s.toString());
    }
    
-   private static int minMatrix(int[][] ma) {
+   private static int getMinimum(int[][] ma) {
       int min = ma[0][0];
       
       for (int i = 0; i < ma.length; i++) {
@@ -64,7 +68,7 @@ public class EX_26_03_Matrix {
       return min;
    }
    
-   private static int maxMatrix(int[][] ma) {
+   private static int getMaximum(int[][] ma) {
       int max = ma[0][0];
       
       for (int i = 0; i < ma.length; i++) {
@@ -92,6 +96,35 @@ public class EX_26_03_Matrix {
       
       return sum;
    }
+   
+   private static int getColSum(int[][] ma, int col) {
+      if (col < 0 || col > ma.length - 1) {
+         System.out.println("getRowSum() Error: row doesn't exist");
+         return -1;
+      }
+      
+      int sum = 0;
+      
+      for (int i = 0; i < ma[col].length; i++) {
+         sum += ma[i][col];
+      }
+      
+      return sum;
+   }
+
+   private static int getTotalSum(int[][] ma) {
+      int sum = 0;
+      
+      for (int i = 0; i < ma.length; i++) {
+         for (int j = 0; j < ma[i].length; j++) {
+            sum += ma[i][j];
+         }
+      }
+
+      return sum;
+   }
+
+   
    
    private static int random(int lb, int ub) {
       return (int) (Math.random() * (ub - lb + 1) + lb);
