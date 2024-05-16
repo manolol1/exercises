@@ -9,7 +9,7 @@
 public class EX_26_03_Matrix {
    public static void main(String[] args) {
       final int ROWS = 5, COLS = 5;
-      final int LB = -5, UB = 5;
+      final int LB = 1, UB = 5;
       
       int[][] ma = new int[ROWS][COLS];
       fillMatrix(ma, LB, UB);
@@ -18,6 +18,7 @@ public class EX_26_03_Matrix {
       System.out.println(getRowSum(ma, 4));
       System.out.println(getColSum(ma, 4));
       System.out.println(getTotalSum(ma));
+      System.out.println(getAverage(ma));
       System.out.println(getMinimum(ma));
       System.out.println(getMaximum(ma));
    }
@@ -124,7 +125,9 @@ public class EX_26_03_Matrix {
       return sum;
    }
 
-   
+   private static double getAverage(int[][] ma) {
+      return (double) getTotalSum(ma) / (ma.length * ma[0].length);
+   }
    
    private static int random(int lb, int ub) {
       return (int) (Math.random() * (ub - lb + 1) + lb);
