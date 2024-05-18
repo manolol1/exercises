@@ -27,10 +27,11 @@ public class EX_26_04_Hangman {
    
    private static String[] getWordList() {
       final String[] defaultWords = {"tree", "penguin", "school", "programming", "java", "computer", "giraffe", "operating system"};
+      final String fileName = "words.txt";
       
-      // try reading words.txt and return words as String[]
+      // try reading wordlist (file) and return words as String[]
       try {
-         File file = new File("words.txt");
+         File file = new File(fileName);
          Scanner s = new Scanner(file);
          
          ArrayList<String> words = new ArrayList<>();
@@ -41,11 +42,11 @@ public class EX_26_04_Hangman {
             }
          }
          
-         System.out.println("Using words.txt as wordlist.");
+         System.out.println("Using " + fileName + " as wordlist.");
          return words.toArray(new String[words.size()]);
          
       } catch (Exception e) {
-         System.out.println("No wordlist found. To use a custom wordlist, create a file named words.txt in the same folder as the program. Words are seperated by linebreaks.");
+         System.out.println("No wordlist found. To use a custom wordlist, create a file named " + fileName + " in the same folder as the program. Words are seperated by linebreaks.");
          System.out.println("Using default wordlist.");
          return defaultWords;
       }
