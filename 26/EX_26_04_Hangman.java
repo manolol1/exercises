@@ -26,6 +26,7 @@ public class EX_26_04_Hangman {
       String correctWord = words[random(0, words.length - 1)].toUpperCase();
       String word = "";
       int mistakes = 0;
+      ArrayList<Character> guessHistory = new ArrayList<>();
       
       // prepare initial String
       for (char ch : correctWord.toCharArray()) {
@@ -48,12 +49,14 @@ public class EX_26_04_Hangman {
       while (mistakes < 10) {
          clear();
          System.out.println(mistakes != 0 ? ascii[mistakes] : "");
-         System.out.println(String.valueOf(wordAr));
+         System.out.println("Previous guesses: " + (guessHistory.isEmpty() ? "none" : chArrayListToString(guessHistory)));
+         System.out.println("\n" + String.valueOf(wordAr));
          
          // get user input
          System.out.print("\nEnter your guess (one letter): ");
          try {
             guess = s.nextLine().toUpperCase().charAt(0);
+            guessHistory.add(guess);
          } catch(Exception e) {
             // could be caused by empty response (StringIndexOutOfBoundsException)
             System.out.println("Failed to parse guess. Press enter to try again");
@@ -114,6 +117,14 @@ public class EX_26_04_Hangman {
          System.out.println("Using default wordlist.");
          return defaultWords;
       }
+   }
+   
+   private static String chArrayListToString(ArrayList<Character> ar) {
+      StringBuilder res = new StringBuilder(ar.size());
+      
+      ar.forEach((ch) -> res.append(ch + " "));
+      
+      return res.toString();
    }
    
    private static void clear() {
