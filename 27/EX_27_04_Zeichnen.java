@@ -4,7 +4,18 @@
 * HUE:           27
 * EX:            04
 * Description:   Experimenting with the Pad-Module
+* Additional Class: Pad.java
 *********************************************/
+
+/* Changes inside Pad.java
+   
+   Fixed:
+      NullPointerException at getHeight() (Line ~140)
+      
+   Added:
+      getWidth()   
+      centerWindow()
+*/
 
 import java.awt.*;
 import java.awt.event.*;
@@ -15,8 +26,6 @@ public class EX_27_04_Zeichnen {
    static int state = 0;
   
    public static void main(String[] args) {
-      Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-      
       pad = new Pad("Hello World!");
       pad.setPadSize(800, 800);
       pad.centerWindow();
@@ -75,18 +84,5 @@ public class EX_27_04_Zeichnen {
       pad.fillCircle(400, 300, 200);
       
       pad.redraw();
-   }
-   
-   private static void centerWindow() {
-      // get bounds of primary screen
-      Rectangle screen = GraphicsEnvironment.getLocalGraphicsEnvironment()
-         .getScreenDevices()[0].getDefaultConfiguration().getBounds();
-      
-      pad.redraw();
-   
-      int centerX = (int) (screen.getWidth() - pad.getWidth()) / 2 + screen.x;
-      int centerY = (int) (screen.getHeight() - pad.getHeight()) / 2 + screen.y;
-   
-      pad.setLocation(centerX, centerY);
    }
 }
