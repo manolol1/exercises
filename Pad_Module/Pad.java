@@ -92,7 +92,7 @@ public class Pad  {
       try { // Look-and-feel setzen
          UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
       } catch (Exception e) { }
-   
+
       frame = new PadFrame(title);  // Hauptfenster
       padArea = new PadArea();		 // Zeichenfeld innerhalb des Hauptfensters
       JButton button = new JButton("EXIT"); // Exit-Button
@@ -102,13 +102,13 @@ public class Pad  {
                System.exit(0);
             }//actionPerformed
          });//addActionListener
-   
+
       JPanel pane = new JPanel();
       pane.setLayout(new BorderLayout() );
       pane.add( BorderLayout.SOUTH, button);
       pane.add( BorderLayout.CENTER, padArea );
       frame.setContentPane( pane );
-   
+
       frame.pack();				// Groessen der Teilfenster berechnen
       frame.setVisible( false );		// (noch) nicht am Bildschirm zeigen
       frame.addWindowListener(
@@ -182,14 +182,14 @@ public class Pad  {
   * Liefert die Breite der Zeichenfl&auml;che.
   * @return  Breite (in Pixel)
   ***********************************************************************/
-   public int getAreaWidth() { 
+   public int getAreaWidth() {
       return padArea.getSize().width; }
 
 /***********************************************************************
   * Liefert die H&ouml;he der Zeichenfl&auml;che.
   * @return  H&ouml;he (in Pixel)
   ***********************************************************************/
-   public int getAreaHeight() { 
+   public int getAreaHeight() {
       return padArea.getSize().height; }
 
 /***********************************************************************
@@ -233,12 +233,38 @@ public class Pad  {
       return padArea.getCharWidth( symbol );
    }
 
-/***********************************************************************
+  /***********************************************************************
   * Ermittelt die H&ouml;he des Fensters.
   *  @return  H&ouml;he des Fensters.
   ***********************************************************************/
    public int getHeight () {
-      return padArea.getLineHeight();
+      return frame.getHeight(); // fixed NullPointerException (Mario)
+   }
+
+  /***********************************************************************
+  * Ermittelt die Breite des Fensters.
+  * (Mario)
+  *  @return  Breite des Fensters.
+  ***********************************************************************/
+   public int getWidth () {
+      return frame.getWidth();
+   }
+
+   /***********************************************************************
+  * Zentriert das Fenster auf dem Hauptbildschirm.
+  * (Mario)
+  ***********************************************************************/
+   public void centerWindow() {
+      // get bounds of primary screen
+      Rectangle screen = GraphicsEnvironment.getLocalGraphicsEnvironment()
+         .getScreenDevices()[0].getDefaultConfiguration().getBounds();
+
+      this.redraw();
+
+      int centerX = (int) (screen.getWidth() - this.getWidth()) / 2 + screen.x;
+      int centerY = (int) (screen.getHeight() - this.getHeight()) / 2 + screen.y;
+
+      this.setLocation(centerX, centerY);
    }
 
 /***********************************************************************
@@ -605,23 +631,23 @@ public class Pad  {
             @Override
             public void keyTyped(KeyEvent e) {
             }
-         
+
             @Override
             public void keyPressed(KeyEvent e) {
             }
-         
+
             @Override
             public void keyReleased(KeyEvent e) {
                keyListener.accept(e.getKeyChar(), e.getKeyCode());
             }
          });
-         
-         
+
+
    }
-   
+
    public void drawImage(int x, int y,int width, int height, String file){
-        padArea.drawImage(x,y,width, height,file);
-    }
+      padArea.drawImage(x,y,width, height,file);
+   }
 
 } // end of class Pad
 
@@ -688,7 +714,7 @@ class PadArea extends JLabel {
    public void paintComponent( Graphics g ) {
       Graphics2D g2 = ( Graphics2D ) g;
       super.paintComponent( g2 );
-   
+
       if (switchBuf)
       {
          if ( ImageBuffer1 != null )
@@ -895,17 +921,17 @@ class PadArea extends JLabel {
    private int round (double d) {
       return (int) d;
    }
-   
-    public void drawImage(int x, int y, int width, int height, String file){
 
-        try {
-            BufferedImage img = ImageIO.read(new File(file));
-            gb.drawImage(img,x,y, width,height,null);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+   public void drawImage(int x, int y, int width, int height, String file){
 
-    }
+      try {
+         BufferedImage img = ImageIO.read(new File(file));
+         gb.drawImage(img,x,y, width,height,null);
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+
+   }
 } // end of class PadArea
 
 

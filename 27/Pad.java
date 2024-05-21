@@ -233,12 +233,38 @@ public class Pad  {
       return padArea.getCharWidth( symbol );
    }
 
-/***********************************************************************
+  /***********************************************************************
   * Ermittelt die H&ouml;he des Fensters.
   *  @return  H&ouml;he des Fensters.
   ***********************************************************************/
    public int getHeight () {
-      return padArea.getLineHeight();
+      return frame.getHeight(); // fixed NullPointerException (Mario)
+   }
+   
+  /***********************************************************************
+  * Ermittelt die Breite des Fensters.
+  * (Mario)
+  *  @return  Breite des Fensters.
+  ***********************************************************************/
+   public int getWidth () {
+      return frame.getWidth();
+   }
+   
+   /***********************************************************************
+  * Zentriert das Fenster auf dem Hauptbildschirm.
+  * (Mario)
+  ***********************************************************************/
+   public void centerWindow() {
+      // get bounds of primary screen
+      Rectangle screen = GraphicsEnvironment.getLocalGraphicsEnvironment()
+         .getScreenDevices()[0].getDefaultConfiguration().getBounds();
+      
+      this.redraw();
+   
+      int centerX = (int) (screen.getWidth() - this.getWidth()) / 2 + screen.x;
+      int centerY = (int) (screen.getHeight() - this.getHeight()) / 2 + screen.y;
+   
+      this.setLocation(centerX, centerY);
    }
 
 /***********************************************************************
@@ -620,8 +646,8 @@ public class Pad  {
    }
    
    public void drawImage(int x, int y,int width, int height, String file){
-        padArea.drawImage(x,y,width, height,file);
-    }
+      padArea.drawImage(x,y,width, height,file);
+   }
 
 } // end of class Pad
 
@@ -896,16 +922,16 @@ class PadArea extends JLabel {
       return (int) d;
    }
    
-    public void drawImage(int x, int y, int width, int height, String file){
-
-        try {
-            BufferedImage img = ImageIO.read(new File(file));
-            gb.drawImage(img,x,y, width,height,null);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
+   public void drawImage(int x, int y, int width, int height, String file){
+   
+      try {
+         BufferedImage img = ImageIO.read(new File(file));
+         gb.drawImage(img,x,y, width,height,null);
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+   
+   }
 } // end of class PadArea
 
 

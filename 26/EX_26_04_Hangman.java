@@ -4,6 +4,7 @@
 * HUE:           26
 * EX:            04
 * Description:   Hangman game
+* Additional Class: ASCII.java
 *********************************************/
 
 import java.util.Scanner;
@@ -109,6 +110,8 @@ public class EX_26_04_Hangman {
             }
          }
          
+         s.close();
+         
          System.out.println("Using " + fileName + " as wordlist.");
          return words.toArray(new String[words.size()]);
          
@@ -120,9 +123,9 @@ public class EX_26_04_Hangman {
    }
    
    private static String chArrayListToString(ArrayList<Character> ar) {
-      StringBuilder res = new StringBuilder(ar.size());
+      StringBuilder res = new StringBuilder(ar.size() * 2 + 1);
       
-      ar.forEach((ch) -> res.append(ch + " "));
+      ar.forEach((ch) -> res.append(ch).append(' '));
       
       return res.toString();
    }
