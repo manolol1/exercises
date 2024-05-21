@@ -677,8 +677,8 @@ class PadArea extends JLabel {
       if ( ImageBuffer1 == null ) {
          ImageBuffer1 = (BufferedImage)createImage( getWidth(), getHeight() );
          gb = ( Graphics2D )ImageBuffer1.getGraphics();
-      //       gb.setRenderingHint( RenderingHints.KEY_ANTIALIASING,
-      // 			   RenderingHints.VALUE_ANTIALIAS_ON );
+         gb.setRenderingHint( RenderingHints.KEY_ANTIALIASING,
+            RenderingHints.VALUE_ANTIALIAS_ON );
       }
       if (ImageBuffer2 == null)
          ImageBuffer2 = (BufferedImage)createImage( getWidth(), getHeight() );
