@@ -15,6 +15,7 @@
    Added:
       getWidth()
       centerWindow()
+      enabled Antialiasing
 */
 
 import java.awt.*;
