@@ -6,11 +6,8 @@
 * Description:   
 *********************************************/
 
-import java.util.Scanner;
-
 public class EX_27_05_Chess {
    public static void main(String[] args) {
-      Scanner s = new Scanner(System.in);
       
    }
 }

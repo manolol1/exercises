@@ -10,10 +10,10 @@
 /* Changes inside Pad.java
    
    Fixed:
-      NullPointerException at getHeight() (Line ~140)
+      NullPointerException at getHeight() (Line ~240)
       
    Added:
-      getWidth()   
+      getWidth()
       centerWindow()
 */
 
