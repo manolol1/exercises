@@ -1,14 +1,14 @@
 /********************************************
 * Name:          Mario Ebenhofer
-* Date:          01.01. 2024
-* HUE:           24_02
+* Date:          21.05. 2024
+* HUE:           27
 * EX:            01
-* Description:
+* Description:   
 *********************************************/
 
 import java.util.Scanner;
 
-public class EX_00_00_Template {
+public class EX_27_01_Cinema {
    public static void main(String[] args) {
       Scanner s = new Scanner(System.in);
       
