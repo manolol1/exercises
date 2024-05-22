@@ -74,6 +74,7 @@ public class EX_27_01_Cinema {
       return (int) (Math.random() * (ub - lb + 1) + lb);
    }
    
+   // Calculates maximum number-length and prints Matrix
    private static void printMatrix(int[][] ma) {
       int min = getMinimum(ma);
       int max = getMaximum(ma);
@@ -84,6 +85,7 @@ public class EX_27_01_Cinema {
       printMatrix(ma, maxRow, maxCol);
    }
    
+   // Prints Matrix with a space between each column
    private static void printMatrix(int[][] ma, int maxRow, int maxCol) {
       StringBuilder s = new StringBuilder(maxRow * maxCol);
       

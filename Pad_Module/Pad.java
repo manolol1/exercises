@@ -250,23 +250,6 @@ public class Pad  {
       return frame.getWidth();
    }
 
-   /***********************************************************************
-  * Zentriert das Fenster auf dem Hauptbildschirm.
-  * (Mario)
-  ***********************************************************************/
-   public void centerWindow() {
-      // get bounds of primary screen
-      Rectangle screen = GraphicsEnvironment.getLocalGraphicsEnvironment()
-         .getScreenDevices()[0].getDefaultConfiguration().getBounds();
-
-      this.redraw();
-
-      int centerX = (int) (screen.getWidth() - this.getWidth()) / 2 + screen.x;
-      int centerY = (int) (screen.getHeight() - this.getHeight()) / 2 + screen.y;
-
-      this.setLocation(centerX, centerY);
-   }
-
 /***********************************************************************
   * Ermittelt die H&ouml;he des typischen Gro&szlig;buchstaben.
   * @return  Ascent.

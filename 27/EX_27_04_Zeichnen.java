@@ -4,19 +4,8 @@
 * HUE:           27
 * EX:            04
 * Description:   Experimenting with the Pad-Module
-* Additional Class: Pad.java
-*********************************************/
-
-/* Changes inside Pad.java
-   
-   Fixed:
-      NullPointerException at getHeight() (Line ~240)
-      
-   Added:
-      getWidth()
-      centerWindow()
-      enabled Antialiasing
-*/
+* Additional Classes: Pad.java, PadUtil.java
+**********************************************/
 
 import java.awt.*;
 import java.awt.event.*;
@@ -29,7 +18,7 @@ public class EX_27_04_Zeichnen {
    public static void main(String[] args) {
       pad = new Pad("Hello World!");
       pad.setPadSize(800, 800);
-      pad.centerWindow();
+      PadUtil.getPadFrame(pad).setLocationRelativeTo(null); // center window
       pad.setVisible(true);
             
       final String notice = "Press Enter to change painting!";
