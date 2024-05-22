@@ -24,7 +24,7 @@ public class EX_27_05_Chess {
       /* Screen: */
       GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
       
-      /* How can I get screen resolution in java?
+      /* Source: How can I get screen resolution in java?
          https://stackoverflow.com/questions/3680221/how-can-i-get-screen-resolution-in-java#answer-3680236 */
       int screenWidth = gd.getDisplayMode().getWidth();
       int screenHeight = gd.getDisplayMode().getHeight();
@@ -44,7 +44,7 @@ public class EX_27_05_Chess {
       draw(); // draw board once
       
       // redraw board on window resize
-      /* Window resize event?
+      /* Source: Window resize event?
          https://stackoverflow.com/questions/2303305/window-resize-event/2303329#2303329 */
       frame.addComponentListener(
          new ComponentAdapter() {
