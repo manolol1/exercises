@@ -18,6 +18,7 @@ public class EX_27_05_Chess {
    static final int BOARD_SIZE = 8;
    
    static Pad pad;
+   static JFrame frame;
    
    public static void main(String[] args) {
       /* Screen: */
@@ -30,13 +31,13 @@ public class EX_27_05_Chess {
       
       /* Set-up Pad window */
       pad = new Pad("Chess Board");
-      JFrame frame = PadUtil.getPadFrame(pad);
+      frame = PadUtil.getPadFrame(pad);
       pad.setPadSize(screenHeight, screenWidth);  // Possible bug in Pad.java: resize only works, if the
                                                   // Pads window is initially created with its maximum size.
       pad.setVisible(true);
       pad.setPadSize(INITIAL_FRAME_SIZE_X, INITIAL_FRAME_SIZE_Y);
       PadUtil.sleep(50); // not waiting sometimes causes the window to 
-                         //spawn in the wrong position or have the wrong size on Linux
+                         // spawn in the wrong position or have the wrong size on Linux
       frame.setResizable(true);
       frame.setLocationRelativeTo(null); // center window
       
