@@ -120,7 +120,15 @@ public class Pad  {
       //frame.setMinimumSize(frame.getPreferredSize());
       //frame.setMaximumSize(frame.getPreferredSize());
       //setBackground(Pad.black);
-      //setVisible(true);
+      
+      /* Screen Resolution: */
+      /* Source: How can I get screen resolution in java?
+         https://stackoverflow.com/questions/3680221/how-can-i-get-screen-resolution-in-java#answer-3680236 */
+      GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+      int screenWidth = gd.getDisplayMode().getWidth();
+      int screenHeight = gd.getDisplayMode().getHeight();
+      setPadSize(screenHeight, screenWidth);
+      setVisible(true);
    }// Pad
 
 
@@ -177,6 +185,13 @@ public class Pad  {
       frame.setSize( w, h );
       padArea.setAreaSize( w, h );
       frame.pack();
+      
+      try {
+         Thread.sleep(50);
+         // not waiting sometimes causes the window to spawn in the wrong position or have the wrong size
+      } catch (InterruptedException e) {
+         
+      }
    }
 /***********************************************************************
   * Liefert die Breite der Zeichenfl&auml;che.

@@ -21,23 +21,11 @@ public class EX_27_05_Chess {
    static JFrame frame;
    
    public static void main(String[] args) {
-      /* Screen: */
-      GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-      
-      /* Source: How can I get screen resolution in java?
-         https://stackoverflow.com/questions/3680221/how-can-i-get-screen-resolution-in-java#answer-3680236 */
-      int screenWidth = gd.getDisplayMode().getWidth();
-      int screenHeight = gd.getDisplayMode().getHeight();
-      
       /* Set-up Pad window */
       pad = new Pad("Chess Board");
       frame = PadUtil.getPadFrame(pad);
-      pad.setPadSize(screenHeight, screenWidth);  // Possible bug in Pad.java: resize only works, if the
-                                                  // Pads window is initially created with its maximum size.
-      pad.setVisible(true);
+      
       pad.setPadSize(INITIAL_FRAME_SIZE_X, INITIAL_FRAME_SIZE_Y);
-      PadUtil.sleep(50); // not waiting sometimes causes the window to 
-                         // spawn in the wrong position or have the wrong size on Linux
       frame.setResizable(true);
       frame.setLocationRelativeTo(null); // center window
       
