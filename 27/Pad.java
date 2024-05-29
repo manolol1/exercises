@@ -187,8 +187,9 @@ public class Pad  {
       frame.pack();
       
       try {
-         Thread.sleep(50);
+         Thread.sleep(100);
          // not waiting sometimes causes the window to spawn in the wrong position or have the wrong size
+         // issue still rarely occurs, but it's much better like that.
       } catch (InterruptedException e) {
          
       }
