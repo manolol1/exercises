@@ -1,3 +1,4 @@
+
 import java.lang.InterruptedException;
 import java.lang.reflect.Field;
 
@@ -12,7 +13,7 @@ import javax.swing.JFrame;
  *  @author Michael Stumpfl
  *  @version 0.1
  ***********************************************************************/
-class PadUtil {
+public class PadUtil {
    public static JFrame getPadFrame(Pad window) {
       Field padFrameField = null;  /* Information about the ‘frame’ field of the ‘Pad’ class */
       JFrame padFrame = null;      /* Internal JFrame member of the ‘Pad’ class */

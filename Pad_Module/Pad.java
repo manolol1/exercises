@@ -9,13 +9,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.util.function.BiConsumer;
 
-
-/*******************************************************************************
- * Die Klasse Pad stellt ein paar einfache Methoden zur
- * Unterst&uuml;tzung der graphischen Ausgabe zur Verf&uuml;gung.
- *	@author P. Pepper, Adaptiert Michael Buchberger, Adaptiert Michael Holzmann
- *	@version 1.3
- ******************************************************************************/
 class PadFrame extends JFrame {
 
    PadFrame (String title)
@@ -26,6 +19,12 @@ class PadFrame extends JFrame {
    }
 }
 
+/*******************************************************************************
+ * Die Klasse Pad stellt ein paar einfache Methoden zur
+ * Unterstuetzung der graphischen Ausgabe zur Verfuegung.
+ *	@author P. Pepper, Adaptiert Michael Buchberger, Adaptiert Michael Holzmann
+ *	@version 1.3
+ ******************************************************************************/
 public class Pad  {
    private static int delay = 100;		// in milliseconds
    private static int factor = 0;
@@ -54,7 +53,7 @@ public class Pad  {
    static final public Color black   =  Color.black;
    /** Blaue Farbe */
    static final public Color blue    =  Color.blue;
-   /** Gr&uuml;ne Farbe */
+   /** Gruene Farbe */
    static final public Color green   =  Color.green;
    /** Violette Farbe */
    static final public Color magenta =  Color.magenta;
@@ -167,7 +166,7 @@ public class Pad  {
    public void setBackground( Color bg ) { frame.setBackground( bg ); }
 
 /***********************************************************************
-  * L&auml;&szlig;t das Fenster auf dem Bildschirm erscheinen
+  * Lae&szlig;t das Fenster auf dem Bildschirm erscheinen
   *	@param vis true=zeigen, false = verbergen
   ***********************************************************************/
    public void setVisible( boolean vis ) {
@@ -177,9 +176,9 @@ public class Pad  {
    }
 
 /***********************************************************************
-  * Setzt Breite und H&ouml;he des Fensters.
-  *  @param w  gew&uuml;nschte Breite (in Pixel).
-  *  @param h  gew&uuml;nschte H&ouml;he (in Pixel)
+  * Setzt Breite und Hoehe des Fensters.
+  *  @param w  gewuenschte Breite (in Pixel).
+  *  @param h  gewuenschte Hoehe (in Pixel)
   ***********************************************************************/
    public void setPadSize( int w, int h ) {
       frame.setSize( w, h );
@@ -195,22 +194,22 @@ public class Pad  {
       }
    }
 /***********************************************************************
-  * Liefert die Breite der Zeichenfl&auml;che.
+  * Liefert die Breite der Zeichenflaeche.
   * @return  Breite (in Pixel)
   ***********************************************************************/
    public int getAreaWidth() {
       return padArea.getSize().width; }
 
 /***********************************************************************
-  * Liefert die H&ouml;he der Zeichenfl&auml;che.
-  * @return  H&ouml;he (in Pixel)
+  * Liefert die Hoehe der Zeichenflaeche.
+  * @return  Hoehe (in Pixel)
   ***********************************************************************/
    public int getAreaHeight() {
       return padArea.getSize().height; }
 
 /***********************************************************************
   * Setzt Vordergrundfarbe des Fensters.
-  *  @param col  gew&uuml;nschte Farbe.
+  *  @param col  gewuenschte Farbe.
   ***********************************************************************/
    public void setColor ( Color col ) { padArea.setColor(col); }
 
@@ -220,22 +219,22 @@ public class Pad  {
   * Setzt den Font
   *  @param name  Name des Fonts.
   *  @param style Stil des Fonts.
-  *  @param size  Gr&ouml;sse des Fonts.
+  *  @param size  Groesse des Fonts.
   ***********************************************************************/
    public void setFont ( String name, int style, int size) {
       padArea.setFont( new Font(name,style,size) );
    }
 
 /***********************************************************************
-  * Strichst&auml;rke festlegen
-  *	@param str die Strichst&auml;rke
+  * Strichstaerke festlegen
+  *	@param str die Strichstaerke
   ***********************************************************************/
    public void setStroke( BasicStroke str ) { padArea.setStroke( str ); }
 
 /***********************************************************************
-  * Ermittelt die L&auml;nge einer Zeichenkette.
+  * Ermittelt die Laenge einer Zeichenkette.
   *  @param text  Zeichenkette
-  *  @return  L&auml;nge der Zeichenkette
+  *  @return  Laenge der Zeichenkette
   ***********************************************************************/
    public int stringWidth (String text) {
       return padArea.getStringWidth( text );
@@ -250,8 +249,8 @@ public class Pad  {
    }
 
   /***********************************************************************
-  * Ermittelt die H&ouml;he des Fensters.
-  *  @return  H&ouml;he des Fensters.
+  * Ermittelt die Hoehe des Fensters.
+  *  @return  Hoehe des Fensters.
   ***********************************************************************/
    public int getHeight () {
       return frame.getHeight(); // fixed NullPointerException (Mario)
@@ -266,25 +265,8 @@ public class Pad  {
       return frame.getWidth();
    }
 
-   /***********************************************************************
-  * Zentriert das Fenster auf dem Hauptbildschirm.
-  * (Mario)
-  ***********************************************************************/
-   public void centerWindow() {
-      // get bounds of primary screen
-      Rectangle screen = GraphicsEnvironment.getLocalGraphicsEnvironment()
-         .getScreenDevices()[0].getDefaultConfiguration().getBounds();
-
-      this.redraw();
-
-      int centerX = (int) (screen.getWidth() - this.getWidth()) / 2 + screen.x;
-      int centerY = (int) (screen.getHeight() - this.getHeight()) / 2 + screen.y;
-
-      this.setLocation(centerX, centerY);
-   }
-
 /***********************************************************************
-  * Ermittelt die H&ouml;he des typischen Gro&szlig;buchstaben.
+  * Ermittelt die Hoehe des typischen Gro&szlig;buchstaben.
   * @return  Ascent.
   ***********************************************************************/
    public int getAscent () {
@@ -292,7 +274,7 @@ public class Pad  {
    }
 
 /***********************************************************************
-  * Ermittelt die typische Unterl&auml;nge des Fonts unter die
+  * Ermittelt die typische Unterlaenge des Fonts unter die
   * Grundlinie.
   * @return  Descent.
   ***********************************************************************/
@@ -301,7 +283,7 @@ public class Pad  {
    }
 
 /***********************************************************************
-  * Ermittelt den Zeilenabstand unter Ber&uuml;cksichtigung des
+  * Ermittelt den Zeilenabstand unter Beruecksichtigung des
   * Ascents und Descents.
   * @return  Spacing.
   ***********************************************************************/
@@ -334,7 +316,7 @@ public class Pad  {
   *  einen gegebenen Mittelpunkt.
   *  @param x   x-Koordinate des Mittelpunkts.
   *  @param y   y-Koordinate des Mittelpunkts.
-  *  @param radius  Gew&uuml;nschter Radius des Kreises.
+  *  @param radius  Gewuenschter Radius des Kreises.
   ***********************************************************************/
    public void drawCircle (int x, int y, int radius) {
       padArea.drawCircle(x,y,radius);
@@ -344,18 +326,18 @@ public class Pad  {
   * Zeichnet eine Kreislinie mit einem gegebenen Radius um
   *  einen gegebenen Mittelpunkt.
   *  @param p   Mittelpunkt.
-  *  @param radius  Gew&uuml;nschter Radius des Kreises.
+  *  @param radius  Gewuenschter Radius des Kreises.
   ***********************************************************************/
    public void drawCircle (Point p, double radius) {
       padArea.drawCircle(p,radius);
    }
 
 /***********************************************************************
-  * Zeichnet eine farbige Kreisfl&auml;che mit einem gegebenen
+  * Zeichnet eine farbige Kreisflaeche mit einem gegebenen
   *  Radius um	einen gegebenen Mittelpunkt.
   *  @param x  x-Koordinate des Mittelpunkts.
   *  @param y  y-Koordinate des Mittelpunkts.
-  *  @param radius  Gew&uuml;nschter Radius des Kreises.
+  *  @param radius  Gewuenschter Radius des Kreises.
   *  @see #setColor(Color col)
   ***********************************************************************/
    public void fillCircle (int x, int y, int radius) {
@@ -363,10 +345,10 @@ public class Pad  {
    }
 
 /***********************************************************************
-  * Zeichnet eine farbige Kreisfl&auml;che mit einem gegebenen
+  * Zeichnet eine farbige Kreisflaeche mit einem gegebenen
   *  Radius um	einen gegebenen Mittelpunkt.
   *  @param p   Mittelpunkt.
-  *  @param radius  Gew&uuml;nschter Radius des Kreises.
+  *  @param radius  Gewuenschter Radius des Kreises.
   *  @see #setColor(Color col)
   ***********************************************************************/
    public void fillCircle (Point p, int radius) {
@@ -379,7 +361,7 @@ public class Pad  {
   *  @param x   x-Koordinate der linken oberen Ecke.
   *  @param y   y-Koordinate der linken oberen Ecke.
   *  @param w   Breite des Rechtecks.
-  *  @param h   H&oumlhe des Rechtecks.
+  *  @param h   Hoehe des Rechtecks.
   ***********************************************************************/
    public void drawOval (int x, int y, int w, int h) {
       padArea.drawOval(x,y,w,h);
@@ -390,30 +372,30 @@ public class Pad  {
   *  Parameter gegebene Rechteck pa&szlig;t.
   *  @param p   linke obere Ecke.
   *  @param w   Breite des Rechtecks.
-  *  @param h   H&oumlhe des Rechtecks.
+  *  @param h   Hoehe des Rechtecks.
   ***********************************************************************/
    public void drawOval (Point p, int w, int h) {
       padArea.drawOval(p,w,h);
    }
 
 /***********************************************************************
-  * Zeichnet eine Ellipsenfl&auml;che, die in das durch die
+  * Zeichnet eine Ellipsenflaeche, die in das durch die
   *  Parameter gegebene Rechteck pa&szlig;t.
   *  @param x   x-Koordinate der linken oberen Ecke.
   *  @param y   y-Koordinate der linken oberen Ecke.
   *  @param w   Breite des Rechtecks.
-  *  @param h   H&oumlhe des Rechtecks.
+  *  @param h   Hoehe des Rechtecks.
   ***********************************************************************/
    public void fillOval (int x, int y, int w, int h) {
       padArea.fillOval(x,y,w,h);
    }
 
 /***********************************************************************
-  * Zeichnet eine Ellipsenfl&auml;che, die in das durch die
+  * Zeichnet eine Ellipsenflaeche, die in das durch die
   *  Parameter gegebene Rechteck pa&szlig;t.
   *  @param p   linke obere Ecke.
   *  @param w   Breite des Rechtecks.
-  *  @param h   H&oumlhe des Rechtecks.
+  *  @param h   Hoehe des Rechtecks.
   ***********************************************************************/
    public void fillOval (Point p, int w, int h) {
       padArea.fillOval(p,w,h);
@@ -424,7 +406,7 @@ public class Pad  {
   *  @param x   x-Koordinate der linken oberen Ecke.
   *  @param y   y-Koordinate der linken oberen Ecke.
   *  @param w   Breite des Rechtecks.
-  *  @param h   H&oumlhe des Rechtecks.
+  *  @param h   Hoehe des Rechtecks.
   ***********************************************************************/
    public void drawRect (int x, int y, int w, int h) {
       padArea.drawRect(x,y,w,h);
@@ -434,28 +416,28 @@ public class Pad  {
   *  Zeichnet den Umri&szlig; eines Rechtecks.
   *  @param p   linke obere Ecke.
   *  @param w   Breite des Rechtecks.
-  *  @param h   H&oumlhe des Rechtecks.
+  *  @param h   Hoehe des Rechtecks.
   ***********************************************************************/
    public void drawRect (Point p, int w, int h) {
       padArea.drawRect(p,w,h);
    }
 
 /***********************************************************************
-  *  Zeichnet eine rechteckige Fl&auml;che.
+  *  Zeichnet eine rechteckige Flaeche.
   *  @param x   x-Koordinate der linken oberen Ecke.
   *  @param y   y-Koordinate der linken oberen Ecke.
   *  @param w   Breite des Rechtecks.
-  *  @param h   H&oumlhe des Rechtecks.
+  *  @param h   Hoehe des Rechtecks.
   ***********************************************************************/
    public void fillRect (int x, int y, int w, int h) {
       padArea.fillRect(x,y,w,h);
    }
 
 /***********************************************************************
-  *  Zeichnet eine rechteckige Fl&auml;che.
+  *  Zeichnet eine rechteckige Flaeche.
   *  @param p   linke obere Ecke.
   *  @param w   Breite des Rechtecks.
-  *  @param h   H&oumlhe des Rechtecks.
+  *  @param h   Hoehe des Rechtecks.
   ***********************************************************************/
    public void fillRect (Point p, int w, int h) {
       padArea.fillRect(p,w,h);
@@ -466,7 +448,7 @@ public class Pad  {
   *  @param x   x-Koordinate der linken oberen Ecke.
   *  @param y   y-Koordinate der linken oberen Ecke.
   *  @param w   Breite des Rechtecks.
-  *  @param h   H&oumlhe des Rechtecks.
+  *  @param h   Hoehe des Rechtecks.
   *  @param raised  Mit 3D-Effekt?
   ***********************************************************************/
    public void draw3DRect (int x, int y, int w, int h, boolean raised) {
@@ -477,7 +459,7 @@ public class Pad  {
   *  Zeichnet den Umri&szlig; eines Rechtecks mit 3D-Effekt.
   *  @param p   linke obere Ecke.
   *  @param w   Breite des Rechtecks.
-  *  @param h   H&oumlhe des Rechtecks.
+  *  @param h   Hoehe des Rechtecks.
   *  @param raised  Mit 3D-Effekt?
   ***********************************************************************/
    public void draw3DRect (Point p, int w, int h, boolean raised) {
@@ -485,11 +467,11 @@ public class Pad  {
    }
 
 /***********************************************************************
-  *  Zeichnet eine rechteckige Fl&auml;che mit 3D-Effekt.
+  *  Zeichnet eine rechteckige Flaeche mit 3D-Effekt.
   *  @param x   x-Koordinate der linken oberen Ecke.
   *  @param y   y-Koordinate der linken oberen Ecke.
   *  @param w   Breite des Rechtecks.
-  *  @param h   H&oumlhe des Rechtecks.
+  *  @param h   Hoehe des Rechtecks.
   *  @param raised  Mit 3D-Effekt?
   ***********************************************************************/
    public void fill3DRect (int x, int y, int w, int h, boolean raised) {
@@ -497,10 +479,10 @@ public class Pad  {
    }
 
 /***********************************************************************
-  *  Zeichnet eine rechteckige Fl&auml;che mit 3D-Effekt.
+  *  Zeichnet eine rechteckige Flaeche mit 3D-Effekt.
   *  @param p   linke obere Ecke.
   *  @param w   Breite des Rechtecks.
-  *  @param h   H&oumlhe des Rechtecks.
+  *  @param h   Hoehe des Rechtecks.
   *  @param raised  Mit 3D-Effekt?
   ***********************************************************************/
    public void fill3DRect (Point p, int w, int h, boolean raised) {
@@ -605,13 +587,13 @@ public class Pad  {
    }
 
 /***********************************************************************
-  * L&ouml;scht das Pad.
+  * Loescht das Pad.
   ***********************************************************************/
    public void clear () {
       padArea.clear();
    }
 
-   /* Verz&ouml;gert graphisch Operationen, so da&szlig; sie f&uuml;
+   /* Verzoegert graphisch Operationen, so da&szlig; sie fue
   * den Betrachter sichtbar werden.
   ***********************************************************************/
    public void slow (int f) {
