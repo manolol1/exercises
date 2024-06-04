@@ -7,10 +7,10 @@
 *********************************************/
 
 import java.util.Scanner;
-import JavaUtils;
+import JavaUtils.*;
 
 public class EX_28_01_MatrixFill {
    public static void main(String[] args) {
-      int[][] ma = MatrixUtils.
+      
    }
 }
