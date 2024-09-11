@@ -1,9 +1,8 @@
 /********************************************
 * Name:          Mario Ebenhofer
-* Date:          01.01. 2024
+* Date:          11.01. 2024
 * HUE:           00
 * EX:            01
-* Description:
 *********************************************/
 
 public class EX_00_01_Arraypruefung {
