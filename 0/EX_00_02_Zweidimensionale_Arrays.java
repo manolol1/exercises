@@ -3,7 +3,7 @@
 * Date:          11.01. 2024
 * HUE:           00
 * EX:            02
-* Description:
+* Description:   Basic methods for 2D-Arrays
 *********************************************/
 
 public class EX_00_02_Zweidimensionale_Arrays {
@@ -20,6 +20,11 @@ public class EX_00_02_Zweidimensionale_Arrays {
       shiftLeft(twoDim);
       
       System.out.println("\nErste Spalte wurde zur letzten");
+      outTwoDim(twoDim);
+      
+      int count = deletePrim(twoDim);
+      
+      System.out.println("\nArray ohne Primzahlen");
       outTwoDim(twoDim);
    }
    

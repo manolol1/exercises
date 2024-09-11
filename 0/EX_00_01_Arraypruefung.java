@@ -14,6 +14,8 @@ public class EX_00_01_Arraypruefung {
       System.out.printf("arr2: %b\n", checkArray(arr2));
    }
    
+   /** Check if an array is sorted in ascending order, 
+       where each higher-indexed number must be greater than double of the previous number */
    public static boolean checkArray(int[] ar) {
       int temp = Integer.MIN_VALUE;
       for (int n : ar) {
