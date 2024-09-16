@@ -20,7 +20,79 @@ public class EX_00_04_Anwendungsbeispiel {
       int[] seats = new int[SEAT_COUNT];
       
       fill(seats, SEAT_OCCUPANCY_PERCENT, PRIORITY_MIN, PRIORITY_MAX);
-      printArray(seats);
+      System.out.println("New waiting room, unsorted: " + arrayToString(seats, ", "));
+      
+      sortSeats(seats);
+      System.out.println("New waiting room, sorted: " + arrayToString(seats, ", "));
+      
+      System.out.println("Treating a patient...");
+      treatPatient(seats);
+      System.out.println("Waiting room after treating a patient: " + arrayToString(seats, ", "));
+      
+      System.out.println("New patient enters...");
+      addPatient(seats, PRIORITY_MIN, PRIORITY_MAX);
+      System.out.println("Waiting room after adding a patient: " + arrayToString(seats, ", "));
+   }
+   
+   /** Add new patient to array, if it itsn't already "full" */
+   public static void addPatient(int[] ar, int min, int max) {
+      sortSeats(ar); // make sure that array is sorted
+      
+      if (ar[ar.length - 1] != 0) {
+         System.out.println("Waiting room is already full. :(");
+      } else {
+         ar[ar.length - 1] = random(min, max);
+         sortSeats(ar);
+      }
+   }
+   
+   /** Set first element in an array to 0 and sort the array again */
+   public static void treatPatient(int[] ar) {
+      if (ar[0] == 0) {
+         System.out.println("There is no patient to treat!");
+      } else {
+         ar[0] = 0;
+         sortSeats(ar);
+      }
+   }
+   
+   /** Sort all seats and shift empty seats (0) to the right */
+   public static void sortSeats(int[] ar) {
+      sort(ar);
+      
+      for (int i = 0; i < ar.length && ar[0] == 0; i++)  {
+         shiftLeft(ar);
+      }
+   }
+   
+   /** Shift an Array to the left, where the first element becomes the last */
+   public static void shiftLeft(int[]ar) {
+      int temp = ar[0];
+      for (int i = 1; i < ar.length; i++) {
+         ar[i - 1] = ar[i];
+      }
+      ar[ar.length - 1] = temp;
+   }
+   
+   /** Sort an Array in ascending order using the SelectionSort algorithm */
+   public static void sort(int[] ar) {
+      int minIndex, temp;
+      
+      for (int i = 0; i < ar.length - 1; i++) {
+         minIndex = i;
+         
+         // find minIndex
+         for (int j = i + 1; j < ar.length; j++) {
+            if (ar[j] < ar[minIndex]) {
+               minIndex = j;
+            }
+         }
+         
+         // swap
+         temp = ar[i];
+         ar[i] = ar[minIndex];
+         ar[minIndex] = temp;
+      }
    }
    
    /** Fill an int array with random values */
