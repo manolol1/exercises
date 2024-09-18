@@ -14,12 +14,12 @@ public class Main {
             if (args[0].equals("-g")) {
                 // TODO: start graphical mode
             } else if (args[0].equals("-t")) {
-                TextMode.start();
+                new TextMode();
             }
         } else {
             System.out.println("No mode specified. Starting Text Mode.");
             System.out.println("For Graphics Mode, run with argument '-g'\n");
-            TextMode.start();
+            new TextMode();
         }
     }
 }
