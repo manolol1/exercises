@@ -1,28 +1,25 @@
-import java.util.Scanner;
+/********************************************
+ * Name:          Mario Ebenhofer
+ * Date:          11.01. 2024
+ * HUE:           01
+ * EX:            01
+ * Description:   Game of Life
+ ********************************************/
+
+import TextMode.TextMode;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
-
-
-    }
-
-    public static int intInput(Scanner s, String name, int min, int max) {
-        System.out.printf("%s (%d-%d): ", name, min, max);
-        int input = 0;
-
-        try {
-            input = s.nextInt();
-        } catch (Exception e) {
-            System.out.println("An error occured while parsing your input. Try again!\n");
+        if (args.length != 0) {
+            if (args[0].equals("-g")) {
+                // TODO: start graphical mode
+            } else if (args[0].equals("-t")) {
+                TextMode.start();
+            }
+        } else {
+            System.out.println("No mode specified. Starting Text Mode.");
+            System.out.println("For Graphics Mode, run with argument '-g'\n");
+            TextMode.start();
         }
-
-        if (input < min || input > max) {
-            System.out.printf("Input must be between %d and %d. Try again!\n\n");
-            return intInput(s, name, min, max);
-        }
-
-        return input;
-
     }
 }
