@@ -70,7 +70,7 @@ public class TextMode {
             board.simulate();
             printBoard();
         }
-        else if (command.equals("simulate --multiple") || command.equals("sm")) {
+        else if (command.equals("simulate multiple") || command.equals("sm")) {
             int count = Utils.intInput(scanner, "Count", 1, 1000);
             board.simulate(count);
             printBoard();
