@@ -8,6 +8,8 @@
 
 import TextMode.TextMode;
 
+import java.awt.*;
+
 public class Main {
     public static void main(String[] args) {
         if (args.length != 0) {
@@ -16,10 +18,15 @@ public class Main {
             } else if (args[0].equals("-t")) {
                 new TextMode();
             }
-        } else {
-            System.out.println("No mode specified. Starting Text Mode.");
-            System.out.println("For Graphics Mode, run with argument '-g'\n");
+        }
+        else if (GraphicsEnvironment.isHeadless()) {
+            System.out.println("Headless environment detected. Starting Text Mode.");
+            System.out.println("For GUI Mode, run with argument '-g'\n");
             new TextMode();
+        } else {
+            System.out.println("Graphical environment detected. Starting GUI Mode.");
+            System.out.println("For Text Mode, run with argument '-t'\n");
+            // TODO: start graphical mode
         }
     }
 }

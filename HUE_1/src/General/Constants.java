@@ -8,8 +8,8 @@ public class Constants {
             simulate or s - simulate the next generation
             simulate multiple or sm - simulate multiple generations
 
-            continue or c - continuously simulate new generations (can only be stopped by ending the program)
-            continue interval or ci - continuously simulate new generations in the given interval (can only be stopped by ending the program)
+            loop or l - continuously simulate new generations every half second (can only be stopped by ending the program)
+            loop interval or li - continuously simulate new generations in the given interval (can only be stopped by ending the program)
             
             revive or r - revive a dead cell
             revive random or rr - revive a random cell
@@ -17,7 +17,9 @@ public class Constants {
             kill or k - kill a cell
             kill random or kr - kill a random cell
             
+            count or c - count alive cells
             print or p - print the board
+            
             end or e - end the program
             help or h - Show this help message
             """;

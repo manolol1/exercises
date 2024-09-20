@@ -28,6 +28,7 @@ public class TextMode {
         System.out.println("Enter help or h for a list of commands, in case you forgot.");
 
         // Game Loop
+        //noinspection InfiniteLoopStatement
         for (;;) {
             nextCommand();
         }
@@ -74,6 +75,53 @@ public class TextMode {
             int count = Utils.intInput(scanner, "Count", 1, 1000);
             board.simulate(count);
             printBoard();
+        }
+        else if (command.equals("loop") || command.equals("l")) {
+            //noinspection InfiniteLoopStatement
+            for (;;) {
+                board.simulate();
+                printBoard();
+                Utils.sleep(500);
+            }
+        }
+        else if (command.equals("loop interval") || command.equals("li")) {
+            int interval = Utils.intInput(scanner, "Interval in milliseconds", 50, 1_000_000);
+            //noinspection InfiniteLoopStatement
+            for (;;) {
+                board.simulate();
+                printBoard();
+                Utils.sleep(interval);
+            }
+        }
+        else if (command.equals("revive") || command.equals("r")) {
+            System.out.println("Please enter the coordinates of the cell you want to revive. Coordinates start at 0 and begin in the top left corner.");
+            int row = Utils.intInput(scanner, "Row", 0, board.getRows() - 1);
+            int col = Utils.intInput(scanner, "Column", 0, board.getColumns() - 1);
+
+            if (!board.getCellStatus(row, col)) {
+                board.revive(row, col);
+                System.out.printf("Revived cell at [%d][%d].\n", row, col);
+                System.out.println("Enter 'print' to view your board or 'simulate' to simulate the next generation and see the results!");
+            } else {
+                System.out.println("Cell is already alive. Nothing was done.");
+            }
+
+        }
+        else if (command.equals("kill") || command.equals("k")) {
+            System.out.println("Please enter the coordinates of the cell you want to kill. Coordinates start at 0 and begin in the top left corner.");
+            int row = Utils.intInput(scanner, "Row", 0, board.getRows() - 1);
+            int col = Utils.intInput(scanner, "Column", 0, board.getColumns() - 1);
+
+            if (board.getCellStatus(row, col)) {
+                board.kill(row, col);
+                System.out.printf("Killed cell at [%d][%d].\n", row, col);
+                System.out.println("Enter 'print' to view your board or 'simulate' to simulate the next generation and see the results!");
+            } else {
+                System.out.println("Cell is already dead. Nothing was done.");
+            }
+        }
+        else if (command.equals("count") || command.equals("c")) {
+            System.out.printf("There are currently %d alive cells on the board.\n", board.countAliveCells());
         }
         else if (command.equals("exit") || command.equals("e")) {
             System.out.println("Bye!");

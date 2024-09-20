@@ -8,7 +8,7 @@ public class Board {
         this.boardMatrix = alive;
     }
 
-    /** Simulates the next generation */
+    /** Simulate the next generation */
     public void simulate() {
         boolean[][] nextMatrix = new boolean[boardMatrix.length][boardMatrix[0].length];
         generation++;
@@ -26,11 +26,27 @@ public class Board {
         boardMatrix = nextMatrix;
     }
 
-    /** Simulates multiple generations */
+    /** Simulate multiple generations */
     public void simulate(int count) {
         for (int i = 0; i < count; i++) {
             simulate();
         }
+    }
+
+    /** Kill a cell at a specified row and column
+     * @param row row in the board, starting at 0
+     * @param col column in the board, starting at 0
+     */
+    public void kill(int row, int col) {
+        boardMatrix[row][col] = false;
+    }
+
+    /** Revive a cell at a specified row and column
+     * @param row row in the board, starting at 0
+     * @param col column in the board, starting at 0
+     */
+    public void revive(int row, int col) {
+        boardMatrix[row][col] = true;
     }
 
     /** Count alive cells next to a specified cell in the matrix */
@@ -53,6 +69,20 @@ public class Board {
         return count;
     }
 
+    /** @return number of alive cells on the board */
+    public int countAliveCells() {
+        int count = 0;
+        for (int i = 0; i < boardMatrix.length; i++) {
+            for (int j = 0; j < boardMatrix[i].length; j++) {
+                if (boardMatrix[i][j]) {
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
+
     /** @return 2D-Array that stores alive and dead cells (true = alive; false = dead) */
     public boolean[][] getMatrix() {
         return boardMatrix;
@@ -61,5 +91,24 @@ public class Board {
     /** @return generation number */
     public int getGeneration() {
         return generation;
+    }
+
+    /** return number of rows of the board */
+    public int getRows() {
+        return boardMatrix.length;
+    }
+
+    /** return number of columns of the board */
+    public int getColumns() {
+        return boardMatrix[0].length;
+    }
+
+    /** Get the state of a cell
+     * @param row row in the board, starting at 0
+     * @param col column in the board, starting at 0
+     * @return true = alive, false = dead
+     */
+    public boolean getCellStatus(int row, int col) {
+        return boardMatrix[row][col];
     }
 }
