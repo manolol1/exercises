@@ -105,7 +105,6 @@ public class TextMode {
             } else {
                 System.out.println("Cell is already alive. Nothing was done.");
             }
-
         }
         else if (command.equals("kill") || command.equals("k")) {
             System.out.println("Please enter the coordinates of the cell you want to kill. Coordinates start at 0 and begin in the top left corner.");
@@ -144,10 +143,11 @@ public class TextMode {
         System.out.println("""
                 Select a board creation mode:
                 1 - Random
+                2 - Predefined board
                 """);
         // TODO: Add more modes
 
-        //int mode = Utils.intInput(scanner, "Mode", 1, 1);
+        //int mode = Utils.intInput(scanner, "Mode", 1, 2);
         int mode = 1; // temporarily skip mode input
 
         switch(mode) {
@@ -162,6 +162,9 @@ public class TextMode {
 
                 System.out.println("\nA new board has been created!");
                 printBoard();
+                break;
+            case 2:
+                // TODO: implement predefined mode
                 break;
             default:
                 // This case should theoretically never be executed
