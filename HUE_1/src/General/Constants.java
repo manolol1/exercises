@@ -1,17 +1,18 @@
 package General;
 
+import java.awt.*;
 import java.io.File;
 
 public class Constants {
-    public static final File USER_HOME;
-    public static final File APP_DIRECTORY;
-    public static final File BOARDS_DIRECTORY;
-    static {
-        USER_HOME = new File(System.getProperty("user.home"));
-        APP_DIRECTORY = new File(USER_HOME, ".GameOfLife");
-        BOARDS_DIRECTORY = new File(APP_DIRECTORY, "boards");
-    }
+    // files
+    public static final File USER_HOME = new File(System.getProperty("user.home"));
+    public static final File APP_DIRECTORY = new File(USER_HOME, ".GameOfLife");
+    public static final File BOARDS_DIRECTORY = new File(APP_DIRECTORY, "boards");
 
+    // GUI
+    public static final Dimension DEFAULT_MAIN_FRAME_SIZE = new Dimension(1200, 800);
+
+    // CLI
     public static final String HELP_MESSAGE = """
             Available commands:
             new or n - create a new board
