@@ -33,8 +33,5 @@ public class Constants {
             
             end or e - end the program
             help or h - Show this help message
-            
-            Available board generation modes:
-            
             """;
 }

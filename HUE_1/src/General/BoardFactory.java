@@ -16,6 +16,7 @@ public class BoardFactory {
         return new Board(alive);
     }
 
+    /** Generate a new board from a file */
     public static Board getFromFile(File file) throws Exception {
         String[] lines = Utils.fileToStringArray(file);
 

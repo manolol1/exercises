@@ -38,7 +38,7 @@ public class Utils {
      */
     public static int intInput(Scanner s, String text, int min, int max) {
         System.out.printf("%s (%d-%d): ", text, min, max);
-        int input = 0;
+        int input;
 
         // Wait for user input
         try {

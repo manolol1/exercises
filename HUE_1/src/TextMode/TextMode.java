@@ -50,9 +50,9 @@ public class TextMode {
 
         System.out.println("Generation " + board.getGeneration());
 
-        for (int i = 0; i < alive.length; i++) {
-            for (int j = 0; j < alive[i].length; j++) {
-                System.out.print((alive[i][j] ? '#' : '-') + " ");
+        for (boolean[] row : alive) {
+            for (boolean col : row) {
+                System.out.print((col ? '#' : '-') + " ");
             }
             System.out.println();
         }
@@ -74,77 +74,72 @@ public class TextMode {
         command = command.trim(); // remove whitespace before and after command
 
         // commands
-        if (command.equals("new") || command.equals("n")) {
-            newBoard();
-        }
-        else if (command.equals("simulate") || command.equals("s")) {
-            board.simulate();
-            printBoard();
-        }
-        else if (command.equals("simulate multiple") || command.equals("sm")) {
-            int count = Utils.intInput(scanner, "Count", 1, 1000);
-            board.simulate(count);
-            printBoard();
-        }
-        else if (command.equals("loop") || command.equals("l")) {
-            //noinspection InfiniteLoopStatement
-            for (;;) {
+        switch (command) {
+            case "new", "n" -> newBoard();
+            case "simulate", "s" -> {
                 board.simulate();
                 printBoard();
-                Utils.sleep(500);
             }
-        }
-        else if (command.equals("loop interval") || command.equals("li")) {
-            int interval = Utils.intInput(scanner, "Interval in milliseconds", 50, 1_000_000);
-            //noinspection InfiniteLoopStatement
-            for (;;) {
-                board.simulate();
+            case "simulate multiple", "sm" -> {
+                int count = Utils.intInput(scanner, "Count", 1, 1000);
+                board.simulate(count);
                 printBoard();
-                Utils.sleep(interval);
             }
-        }
-        else if (command.equals("revive") || command.equals("r")) {
-            System.out.println("Please enter the coordinates of the cell you want to revive. Coordinates start at 0 and begin in the top left corner.");
-            int row = Utils.intInput(scanner, "Row", 0, board.getRows() - 1);
-            int col = Utils.intInput(scanner, "Column", 0, board.getColumns() - 1);
+            case "loop", "l" -> {
+                //noinspection InfiniteLoopStatement
+                for (; ; ) {
+                    board.simulate();
+                    printBoard();
+                    Utils.sleep(500);
+                }
+            }
+            case "loop interval", "li" -> {
+                int interval = Utils.intInput(scanner, "Interval in milliseconds", 50, 1_000_000);
+                //noinspection InfiniteLoopStatement
+                for (; ; ) {
+                    board.simulate();
+                    printBoard();
+                    Utils.sleep(interval);
+                }
+            }
+            case "revive", "r" -> {
+                System.out.println("Please enter the coordinates of the cell you want to revive. Coordinates start at 0 and begin in the top left corner.");
+                int row = Utils.intInput(scanner, "Row", 0, board.getRows() - 1);
+                int col = Utils.intInput(scanner, "Column", 0, board.getColumns() - 1);
 
-            if (!board.getCellStatus(row, col)) {
-                board.revive(row, col);
-                System.out.printf("Revived cell at [%d][%d].\n", row, col);
-                System.out.println("Enter 'print' to view your board or 'simulate' to simulate the next generation and see the results!");
-            } else {
-                System.out.println("Cell is already alive. Nothing was done.");
+                if (!board.getCellStatus(row, col)) {
+                    board.revive(row, col);
+                    System.out.printf("Revived cell at [%d][%d].\n", row, col);
+                    System.out.println("Enter 'print' to view your board or 'simulate' to simulate the next generation and see the results!");
+                } else {
+                    System.out.println("Cell is already alive. Nothing was done.");
+                }
             }
-        }
-        else if (command.equals("kill") || command.equals("k")) {
-            System.out.println("Please enter the coordinates of the cell you want to kill. Coordinates start at 0 and begin in the top left corner.");
-            int row = Utils.intInput(scanner, "Row", 0, board.getRows() - 1);
-            int col = Utils.intInput(scanner, "Column", 0, board.getColumns() - 1);
+            case "kill", "k" -> {
+                System.out.println("Please enter the coordinates of the cell you want to kill. Coordinates start at 0 and begin in the top left corner.");
+                int row = Utils.intInput(scanner, "Row", 0, board.getRows() - 1);
+                int col = Utils.intInput(scanner, "Column", 0, board.getColumns() - 1);
 
-            if (board.getCellStatus(row, col)) {
-                board.kill(row, col);
-                System.out.printf("Killed cell at [%d][%d].\n", row, col);
-                System.out.println("Enter 'print' to view your board or 'simulate' to simulate the next generation and see the results!");
-            } else {
-                System.out.println("Cell is already dead. Nothing was done.");
+                if (board.getCellStatus(row, col)) {
+                    board.kill(row, col);
+                    System.out.printf("Killed cell at [%d][%d].\n", row, col);
+                    System.out.println("Enter 'print' to view your board or 'simulate' to simulate the next generation and see the results!");
+                } else {
+                    System.out.println("Cell is already dead. Nothing was done.");
+                }
             }
-        }
-        else if (command.equals("count") || command.equals("c")) {
-            System.out.printf("There are currently %d alive cells on the board.\n", board.countAliveCells());
-        }
-        else if (command.equals("exit") || command.equals("e")) {
-            System.out.println("Bye!");
-            System.exit(0);
-        }
-        else if (command.equals("print") || command.equals("p")) {
-            printBoard();
-        }
-        else if (command.equals("help") || command.equals("h")) {
-            System.out.println(Constants.HELP_MESSAGE);
-        }
-        else {
-            System.out.println("Unknown command. Enter help or h for a list of available commands. Try again!");
-            nextCommand();
+            case "count", "c" ->
+                    System.out.printf("There are currently %d alive cells on the board.\n", board.countAliveCells());
+            case "exit", "e" -> {
+                System.out.println("Bye!");
+                System.exit(0);
+            }
+            case "print", "p" -> printBoard();
+            case "help", "h" -> System.out.println(Constants.HELP_MESSAGE);
+            default -> {
+                System.out.println("Unknown command. Enter help or h for a list of available commands. Try again!");
+                nextCommand();
+            }
         }
     }
 
@@ -203,7 +198,7 @@ public class TextMode {
                 // get user selection
                 File selectedFile = null;
                 while (selectedFile == null) {
-                    String selection = "";
+                    String selection;
                     try {
                         System.out.print(">> ");
                         selection = scanner.nextLine();
@@ -220,6 +215,7 @@ public class TextMode {
                     }
                 }
 
+                // generate the board
                 try {
                     board = BoardFactory.getFromFile(selectedFile);
                 } catch (FileNotFoundException e) {
