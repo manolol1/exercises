@@ -4,6 +4,9 @@ public class Board {
     private boolean[][] boardMatrix;
     private int generation = 1;
 
+    /** Create a new board object from a 2D-Array
+     * @param alive 2D-Array with cells - true = alive, false = dead - use BoardFactory for this.
+     */
     public Board(boolean[][] alive) {
         this.boardMatrix = alive;
     }

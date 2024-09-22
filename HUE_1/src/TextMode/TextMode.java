@@ -1,10 +1,11 @@
 package TextMode;
 
-import General.Board;
-import General.BoardFactory;
-import General.Constants;
-import General.Utils;
+import General.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TextMode {
@@ -14,7 +15,16 @@ public class TextMode {
     public TextMode() {
         this.scanner = new Scanner(System.in);
 
-        System.out.println("Welcome to Conway's Game of Life!\n");
+        // set up app directory and files
+        try {
+            FileManager.setup(true);
+        } catch (IOException e) {
+            System.out.println("An error occurred while setting up the app directory.");
+            System.out.println("Creating boards from files might not work!");
+            System.out.println("Details: " + e.getMessage());
+        }
+
+        System.out.println("\nWelcome to Conway's Game of Life!\n");
         System.out.println(Constants.HELP_MESSAGE);
 
         System.out.println("New game started. Please create a board!");
@@ -57,7 +67,7 @@ public class TextMode {
         try {
             command = scanner.nextLine();
         } catch (Exception e) {
-            System.err.println("Command could not be parsed. Try again!");
+            System.out.println("Command could not be parsed. Try again!");
         }
 
         System.out.println();
@@ -140,17 +150,16 @@ public class TextMode {
 
     /** Command for creating a new board */
     public void newBoard() {
-        System.out.println("""
+        System.out.printf("""
                 Select a board creation mode:
                 1 - Random
-                2 - Predefined board
-                """);
-        // TODO: Add more modes
+                2 - Read board from file - files must be stored in %s
+                """, Constants.BOARDS_DIRECTORY);
 
-        //int mode = Utils.intInput(scanner, "Mode", 1, 2);
-        int mode = 1; // temporarily skip mode input
+        int mode = Utils.intInput(scanner, "Mode", 1, 2);
 
         switch(mode) {
+            /* random mode */
             case 1:
                 // get necessary user input
                 int height = Utils.intInput(scanner, "Height", 6, 150);
@@ -158,13 +167,74 @@ public class TextMode {
                 int probability = Utils.intInput(scanner, "Probability (%)", 1, 100);
 
                 // generate board
-                board = BoardFactory.randomBoard(height, width, probability);
+                board = BoardFactory.getRandom(height, width, probability);
 
-                System.out.println("\nA new board has been created!");
+                System.out.println("\nA new board has been created!\n");
                 printBoard();
                 break;
             case 2:
-                // TODO: implement predefined mode
+                // read all files to Array
+                System.out.println("Reading board files...");
+                ArrayList<File> files;
+                try {
+                    files = FileManager.getBoardFiles();
+                } catch (IOException e) {
+                    System.out.println("An error occurred while reading the files directory.");
+                    System.out.println("Details: " + e);
+                    break; //
+                }
+                System.out.println("Done!\n");
+
+                System.out.println("You can create custom board templates and load them here.");
+                System.out.println("The board templates must be stored in the following directory: " + Constants.BOARDS_DIRECTORY);
+                System.out.println("You can create as many subdirectories as you like.");
+                System.out.println("Some premade boards have already been loaded to the directory.\n");
+
+                System.out.println("Please select one of the available boards:");
+
+                // print available boards
+                for (File file : files) {
+                    String fileName = file.getName();
+                    if (fileName.endsWith(".txt")) {
+                        System.out.println(fileName.replaceAll(".txt", ""));
+                    }
+                }
+
+                // get user selection
+                File selectedFile = null;
+                while (selectedFile == null) {
+                    String selection = "";
+                    try {
+                        System.out.print(">> ");
+                        selection = scanner.nextLine();
+                    } catch (Exception e) {
+                        System.out.println("Input could not be parsed. Try again!");
+                        break;
+                    }
+
+                    selection += ".txt";
+                    selectedFile = Utils.getFileByName(selection, files);
+
+                    if (selectedFile == null) {
+                        System.out.println("Board does not exist. Try again!\n");
+                    }
+                }
+
+                try {
+                    board = BoardFactory.getFromFile(selectedFile);
+                } catch (FileNotFoundException e) {
+                    System.out.println("The selected board file wasn't found. Maybe, it was deleted?");
+                    break;
+                } catch(Exception e) {
+                    System.out.println("The board couldn't be parsed.");
+                    System.out.println("Details: " + e.getMessage());
+                    System.out.println("Make sure your board is correctly formatted. For an example, look at the files in the templates directory.\n");
+                    break;
+                }
+
+                System.out.println("Board created.\n");
+                printBoard();
+
                 break;
             default:
                 // This case should theoretically never be executed

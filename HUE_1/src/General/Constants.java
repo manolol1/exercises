@@ -1,6 +1,17 @@
 package General;
 
+import java.io.File;
+
 public class Constants {
+    public static final File USER_HOME;
+    public static final File APP_DIRECTORY;
+    public static final File BOARDS_DIRECTORY;
+    static {
+        USER_HOME = new File(System.getProperty("user.home"));
+        APP_DIRECTORY = new File(USER_HOME, ".GameOfLife");
+        BOARDS_DIRECTORY = new File(APP_DIRECTORY, "boards");
+    }
+
     public static final String HELP_MESSAGE = """
             Available commands:
             new or n - create a new board
@@ -22,5 +33,8 @@ public class Constants {
             
             end or e - end the program
             help or h - Show this help message
+            
+            Available board generation modes:
+            
             """;
 }
