@@ -1,10 +1,13 @@
 package GraphicsMode.Frames;
 
+import General.BoardFactory;
 import General.Constants;
+import General.FileManager;
 import GraphicsMode.BoardCanvas;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class MainFrame extends JFrame {
     private final JPanel optionsPanel;
@@ -14,10 +17,19 @@ public class MainFrame extends JFrame {
     private final JButton exitButton;
 
     public MainFrame() {
+        // set up app directory and files
+        try {
+            FileManager.setup(true);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null,  Constants.FILE_SETUP_ERROR_MESSAGE + ' ' + e.getMessage(),
+                    "Error while setting up application files", JOptionPane.ERROR_MESSAGE);
+        }
+
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(Constants.DEFAULT_MAIN_FRAME_SIZE);
         this.setMinimumSize(new Dimension(600, 400));
         this.setTitle("Game of Life");
+        this.setLocationRelativeTo(null); // center window on screen
 
         /* Options Panel */
         optionsPanel = new JPanel();
@@ -49,7 +61,7 @@ public class MainFrame extends JFrame {
         controlsPanel.setBackground(Color.YELLOW);
 
         /* Board Canvas */
-        BoardCanvas boardCanvas = new BoardCanvas();
+        BoardCanvas boardCanvas = new BoardCanvas(BoardFactory.getRandom(20, 20, 20));
 
         // Add every panel to the frame
         this.add(optionsPanel, BorderLayout.WEST);

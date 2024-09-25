@@ -9,6 +9,11 @@ public class Constants {
     public static final File APP_DIRECTORY = new File(USER_HOME, ".GameOfLife");
     public static final File BOARDS_DIRECTORY = new File(APP_DIRECTORY, "boards");
 
+    public static final String FILE_SETUP_ERROR_MESSAGE = """
+            An error occurred while setting up the app directory.
+            Creating boards from files might not work!
+            Details: """;
+
     // GUI
     public static final Dimension DEFAULT_MAIN_FRAME_SIZE = new Dimension(1200, 800);
 

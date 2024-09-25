@@ -1,11 +1,17 @@
 package GraphicsMode;
 
+import General.Board;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class BoardCanvas  extends JPanel {
-    public BoardCanvas() {
-        this.setBackground(Color.BLACK);
+    private Board board;
+
+    public BoardCanvas(Board initialBoard) {
+        this.board = initialBoard;
+
+        this.setBackground(Color.DARK_GRAY);
     }
 
     @Override
@@ -13,12 +19,13 @@ public class BoardCanvas  extends JPanel {
         super.paintComponent(g); // draw panel (background)
         Graphics2D g2d = (Graphics2D) g;
 
+        boolean[][] boardMatrix = board.getMatrix();
+
+        int panelWidth = this.getWidth();
+        int panelHeight = this.getHeight();
+
         g2d.setPaint(Color.white);
 
-        g2d.drawLine(0, 0, this.getWidth(), this.getHeight());
-    }
-
-    public void redraw() {
-        this.repaint();
+        int boardWidth =
     }
 }

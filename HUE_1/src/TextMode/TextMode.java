@@ -19,9 +19,7 @@ public class TextMode {
         try {
             FileManager.setup(true);
         } catch (IOException e) {
-            System.out.println("An error occurred while setting up the app directory.");
-            System.out.println("Creating boards from files might not work!");
-            System.out.println("Details: " + e.getMessage());
+            System.out.println(Constants.FILE_SETUP_ERROR_MESSAGE + ' ' + e.getMessage());
         }
 
         System.out.println("\nWelcome to Conway's Game of Life!\n");
