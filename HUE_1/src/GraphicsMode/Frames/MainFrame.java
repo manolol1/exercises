@@ -61,7 +61,7 @@ public class MainFrame extends JFrame {
         controlsPanel.setBackground(Color.YELLOW);
 
         /* Board Canvas */
-        BoardCanvas boardCanvas = new BoardCanvas(BoardFactory.getRandom(20, 20, 20));
+        BoardCanvas boardCanvas = new BoardCanvas(BoardFactory.getRandom(20, 25, 20));
 
         // Add every panel to the frame
         this.add(optionsPanel, BorderLayout.WEST);
