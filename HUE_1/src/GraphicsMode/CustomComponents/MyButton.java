@@ -26,7 +26,7 @@ public class MyButton extends JButton {
         setForeground(foregroundColor);
         setText(text);
         setFocusable(false);
-        setFontSize(16);
+        setFontSize(17);
 
         addChangeListener(evt -> {
             if (getModel().isPressed()) {

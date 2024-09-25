@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class BoardCanvas  extends JPanel {
-    boolean debug = false;
+    boolean debug = true;
 
     private Board board;
 

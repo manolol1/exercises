@@ -36,13 +36,13 @@ public class MainFrame extends JFrame {
 
         /* Options Panel */
         JPanel optionsPanel = new JPanel();
-        optionsPanel.setPreferredSize(new Dimension(165, 0));
-        optionsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        optionsPanel.setPreferredSize(new Dimension(170, 0));
+        optionsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 15, 15));
         optionsPanel.setBackground(Constants.COLOR_BACKGROUND_1);
 
         // new board button
         MyButton newBoardButton = new MyButton("New Board");
-        newBoardButton.setPreferredSize(new Dimension(150, 30));
+        newBoardButton.setPreferredSize(new Dimension(150, 40));
         newBoardButton.addActionListener(e -> {
             // TODO: Trigger creation of a new board
         });
@@ -50,7 +50,7 @@ public class MainFrame extends JFrame {
 
         // exit button
         MyButton exitButton = new MyButton("Exit");
-        exitButton.setPreferredSize(new Dimension(150, 30));
+        exitButton.setPreferredSize(new Dimension(150, 40));
         exitButton.addActionListener(e -> {
             System.exit(0);
         });
@@ -58,11 +58,12 @@ public class MainFrame extends JFrame {
 
         /* Controls Panel */
         JPanel controlsPanel = new JPanel();
-        controlsPanel.setPreferredSize(new Dimension(0, 40));
+        controlsPanel.setPreferredSize(new Dimension(0, 54));
         controlsPanel.setBackground(Constants.COLOR_BACKGROUND_2);
+        controlsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 15, 7));
 
         MyButton nextGenerationButton = new MyButton("Next Generation");
-        nextGenerationButton.setPreferredSize(new Dimension(200, 30));
+        nextGenerationButton.setPreferredSize(new Dimension(200, 40));
         nextGenerationButton.addActionListener(e -> {
             board.simulate();
             boardCanvas.repaint();
