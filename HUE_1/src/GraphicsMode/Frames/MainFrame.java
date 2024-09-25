@@ -1,27 +1,24 @@
 package GraphicsMode.Frames;
 
+import General.Board;
 import General.BoardFactory;
 import General.Constants;
 import General.FileManager;
 import GraphicsMode.BoardCanvas;
+import GraphicsMode.CustomComponents.MyButton;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
 public class MainFrame extends JFrame {
-    private final JPanel optionsPanel;
-    private final JPanel controlsPanel;
-
-    private final JButton newBoardButton;
-    private final JButton exitButton;
 
     public MainFrame() {
         // set up app directory and files
         try {
             FileManager.setup(true);
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null,  Constants.FILE_SETUP_ERROR_MESSAGE + ' ' + e.getMessage(),
+            JOptionPane.showMessageDialog(null,  Constants.FILE_SETUP_ERROR_MESSAGE + e.getMessage(),
                     "Error while setting up application files", JOptionPane.ERROR_MESSAGE);
         }
 
@@ -31,37 +28,46 @@ public class MainFrame extends JFrame {
         this.setTitle("Game of Life");
         this.setLocationRelativeTo(null); // center window on screen
 
+        /* set up board */
+        Board board = BoardFactory.getRandom(100, 150, 20);
+
+        /* Board Canvas */
+        BoardCanvas boardCanvas = new BoardCanvas(board);
+
         /* Options Panel */
-        optionsPanel = new JPanel();
-        optionsPanel.setPreferredSize(new Dimension(120, 0));
+        JPanel optionsPanel = new JPanel();
+        optionsPanel.setPreferredSize(new Dimension(165, 0));
         optionsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
-        optionsPanel.setBackground(Color.BLUE);
+        optionsPanel.setBackground(Constants.COLOR_BACKGROUND_1);
 
         // new board button
-        newBoardButton = new JButton("New Board");
-        newBoardButton.setPreferredSize(new Dimension(100, 30));
-        newBoardButton.setFocusable(false);
+        MyButton newBoardButton = new MyButton("New Board");
+        newBoardButton.setPreferredSize(new Dimension(150, 30));
         newBoardButton.addActionListener(e -> {
             // TODO: Trigger creation of a new board
         });
         optionsPanel.add(newBoardButton);
 
         // exit button
-        exitButton = new JButton("Exit");
-        exitButton.setPreferredSize(new Dimension(100, 30));
-        exitButton.setFocusable(false);
+        MyButton exitButton = new MyButton("Exit");
+        exitButton.setPreferredSize(new Dimension(150, 30));
         exitButton.addActionListener(e -> {
             System.exit(0);
         });
         optionsPanel.add(exitButton);
 
         /* Controls Panel */
-        controlsPanel = new JPanel();
-        controlsPanel.setPreferredSize(new Dimension(0, 80));
-        controlsPanel.setBackground(Color.YELLOW);
+        JPanel controlsPanel = new JPanel();
+        controlsPanel.setPreferredSize(new Dimension(0, 40));
+        controlsPanel.setBackground(Constants.COLOR_BACKGROUND_2);
 
-        /* Board Canvas */
-        BoardCanvas boardCanvas = new BoardCanvas(BoardFactory.getRandom(20, 25, 20));
+        MyButton nextGenerationButton = new MyButton("Next Generation");
+        nextGenerationButton.setPreferredSize(new Dimension(200, 30));
+        nextGenerationButton.addActionListener(e -> {
+            board.simulate();
+            boardCanvas.repaint();
+        });
+        controlsPanel.add(nextGenerationButton);
 
         // Add every panel to the frame
         this.add(optionsPanel, BorderLayout.WEST);
