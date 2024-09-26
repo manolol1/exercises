@@ -14,8 +14,17 @@ public class MyButton extends JButton {
     private Color normalColor = Constants.COLOR_BACKGROUND_BUTTON;
     private Color foregroundColor = Constants.COLOR_FOREGROUND;
 
+    public MyButton(ImageIcon icon) {
+        super(icon);
+        setup();
+    }
+
     public MyButton (String text) {
         super(text);
+        setup();
+    }
+
+    private void setup() {
         setBorderPainted(false);
         setFocusPainted(false);
 
@@ -24,7 +33,6 @@ public class MyButton extends JButton {
 
         setBackground(normalColor);
         setForeground(foregroundColor);
-        setText(text);
         setFocusable(false);
         setFontSize(17);
 

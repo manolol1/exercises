@@ -1,9 +1,7 @@
 package GraphicsMode.Frames;
 
-import General.Board;
-import General.BoardFactory;
-import General.Constants;
-import General.FileManager;
+import General.*;
+import GraphicsMode.AutoPlayThread;
 import GraphicsMode.BoardCanvas;
 import GraphicsMode.CustomComponents.MyButton;
 
@@ -12,6 +10,11 @@ import java.awt.*;
 import java.io.IOException;
 
 public class MainFrame extends JFrame {
+    private int autoDelay = 1000; // ms
+    private boolean autoPlay;
+    private final AutoPlayThread autoPlayThread;
+
+    private ImageIcon frameIcon, playIcon, pauseIcon;
 
     public MainFrame() {
         // set up app directory and files
@@ -22,17 +25,31 @@ public class MainFrame extends JFrame {
                     "Error while setting up application files", JOptionPane.ERROR_MESSAGE);
         }
 
+        /* set up icons */
+        frameIcon = new ImageIcon("resources/images/seedling-solid.png");
+        playIcon = new ImageIcon("resources/images/play-solid.png");
+        pauseIcon = new ImageIcon("resources/images/pause-solid.png");
+
+        playIcon = Utils.resizeIcon(playIcon, 30, 36);
+        pauseIcon = Utils.resizeIcon(pauseIcon, 30, 36);
+
+        /* set up JFrame */
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(Constants.DEFAULT_MAIN_FRAME_SIZE);
-        this.setMinimumSize(new Dimension(600, 400));
+        this.setMinimumSize(new Dimension(800, 600));
         this.setTitle("Game of Life");
         this.setLocationRelativeTo(null); // center window on screen
+        this.setIconImage(frameIcon.getImage());
 
         /* set up board */
         Board board = BoardFactory.getRandom(100, 150, 20);
 
         /* Board Canvas */
         BoardCanvas boardCanvas = new BoardCanvas(board);
+
+        /* set up autoPlay thread */
+        autoPlayThread = new AutoPlayThread(autoDelay, boardCanvas, board);
+        autoPlayThread.start();
 
         /* Options Panel */
         JPanel optionsPanel = new JPanel();
@@ -69,6 +86,21 @@ public class MainFrame extends JFrame {
             boardCanvas.repaint();
         });
         controlsPanel.add(nextGenerationButton);
+
+        MyButton playButton = new MyButton(playIcon);
+        playButton.setPreferredSize(new Dimension(40, 40));
+        playButton.addActionListener(e -> {
+            if (autoPlay) {
+                playButton.setIcon(playIcon);
+                autoPlay = false;
+                autoPlayThread.pauseThread();
+            } else {
+                playButton.setIcon(pauseIcon);
+                autoPlay = true;
+                autoPlayThread.resumeThread();
+            }
+        });
+        controlsPanel.add(playButton);
 
         // Add every panel to the frame
         this.add(optionsPanel, BorderLayout.WEST);

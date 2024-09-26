@@ -1,5 +1,7 @@
 package General;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -149,5 +151,12 @@ public class Utils {
         }
 
         return lines.toArray(new String[0]);
+    }
+
+    /** Resize an ImageIcon */
+    public static ImageIcon resizeIcon(ImageIcon icon, int width, int height) {
+        Image img = icon.getImage();
+        Image resizedImage = img.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
+        return new ImageIcon(resizedImage);
     }
 }
