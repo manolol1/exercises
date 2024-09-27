@@ -18,7 +18,7 @@ public class Constants {
     public static final Dimension DEFAULT_MAIN_FRAME_SIZE = new Dimension(1200, 800);
     public static final Color COLOR_BACKGROUND_1 = new Color(43, 43, 43, 255);
     public static final Color COLOR_BACKGROUND_2 = new Color(48, 48, 48, 255);
-    public static final Color COLOR_BACKGROUND_BUTTON = new Color(61, 61, 61, 255);
+    public static final Color COLOR_BACKGROUND_BUTTON = new Color(62, 62, 62, 255);
     public static final Color COLOR_PRESSED_BUTTON = new Color(109, 109, 109, 255);
     public static final Color COLOR_HOVER_BUTTON = new Color(87, 87, 87, 255);
     public static final Color COLOR_FOREGROUND = Color.WHITE;

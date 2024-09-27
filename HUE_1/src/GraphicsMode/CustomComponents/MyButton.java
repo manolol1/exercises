@@ -34,7 +34,7 @@ public class MyButton extends JButton {
         setBackground(normalColor);
         setForeground(foregroundColor);
         setFocusable(false);
-        setFontSize(17);
+        setFontSize(16);
 
         addChangeListener(evt -> {
             if (getModel().isPressed()) {

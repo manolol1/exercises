@@ -4,17 +4,25 @@ import General.*;
 import GraphicsMode.AutoPlayThread;
 import GraphicsMode.BoardCanvas;
 import GraphicsMode.CustomComponents.MyButton;
+import GraphicsMode.CustomComponents.MySlider;
+import GraphicsMode.Frames.NewBoardFrames.NewBoardModeSelectionFrame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.io.IOException;
 
 public class MainFrame extends JFrame {
+    private Board board;
+
     private int autoDelay = 1000; // ms
     private boolean autoPlay;
     private final AutoPlayThread autoPlayThread;
 
     private ImageIcon frameIcon, playIcon, pauseIcon;
+
+    private final BoardCanvas boardCanvas;
 
     public MainFrame() {
         // set up app directory and files
@@ -41,11 +49,11 @@ public class MainFrame extends JFrame {
         this.setLocationRelativeTo(null); // center window on screen
         this.setIconImage(frameIcon.getImage());
 
-        /* set up board */
-        Board board = BoardFactory.getRandom(100, 150, 20);
+        /* set up default board */
+        board = BoardFactory.getRandom(100, 150, 20);
 
         /* Board Canvas */
-        BoardCanvas boardCanvas = new BoardCanvas(board);
+        boardCanvas = new BoardCanvas(board);
 
         /* set up autoPlay thread */
         autoPlayThread = new AutoPlayThread(autoDelay, boardCanvas, board);
@@ -61,7 +69,7 @@ public class MainFrame extends JFrame {
         MyButton newBoardButton = new MyButton("New Board");
         newBoardButton.setPreferredSize(new Dimension(150, 40));
         newBoardButton.addActionListener(e -> {
-            // TODO: Trigger creation of a new board
+            new NewBoardModeSelectionFrame(this);
         });
         optionsPanel.add(newBoardButton);
 
@@ -77,7 +85,7 @@ public class MainFrame extends JFrame {
         JPanel controlsPanel = new JPanel();
         controlsPanel.setPreferredSize(new Dimension(0, 54));
         controlsPanel.setBackground(Constants.COLOR_BACKGROUND_2);
-        controlsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 15, 7));
+        controlsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 7));
 
         MyButton nextGenerationButton = new MyButton("Next Generation");
         nextGenerationButton.setPreferredSize(new Dimension(200, 40));
@@ -102,11 +110,41 @@ public class MainFrame extends JFrame {
         });
         controlsPanel.add(playButton);
 
+        JPanel delayPanel = new JPanel(new FlowLayout());
+        delayPanel.setBackground(Constants.COLOR_BACKGROUND_2);
+
+        JLabel delayLabel = new JLabel("Simulation Delay:   ");
+        delayLabel.setForeground(Constants.COLOR_FOREGROUND);
+        delayLabel.setFont(delayLabel.getFont().deriveFont((float) 16));
+
+        JLabel delayValueLabel = new JLabel("   " + autoDelay);
+        delayValueLabel.setForeground(Constants.COLOR_FOREGROUND);
+        delayValueLabel.setFont(delayValueLabel.getFont().deriveFont((float) 16));
+
+        MySlider delaySlider = new MySlider(100, 3000, 1000);
+        delaySlider.setPreferredSize(new Dimension(270, 30));
+        delaySlider.addChangeListener(e -> {
+            autoDelay = delaySlider.getValue();
+            autoPlayThread.setDelay(autoDelay);
+            delayValueLabel.setText(("   " + autoDelay));
+        });
+
+        delayPanel.add(delayLabel);
+        delayPanel.add(delaySlider);
+        delayPanel.add(delayValueLabel);
+        controlsPanel.add(delayPanel);
+
         // Add every panel to the frame
         this.add(optionsPanel, BorderLayout.WEST);
         this.add(controlsPanel, BorderLayout.SOUTH);
         this.add(boardCanvas, BorderLayout.CENTER);
 
         this.setVisible(true);
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
+        boardCanvas.setBoard(board);
+        autoPlayThread.setBoard(board);
     }
 }

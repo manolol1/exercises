@@ -50,4 +50,12 @@ public class AutoPlayThread extends Thread{
             }
         }
     }
+
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
+    public void setDelay(int autoDelay) {
+        this.delay = autoDelay;
+    }
 }

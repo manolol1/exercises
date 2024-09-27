@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class BoardCanvas  extends JPanel {
-    boolean debug = true;
+    boolean debug = false;
 
     private Board board;
 
@@ -56,5 +56,10 @@ public class BoardCanvas  extends JPanel {
                 }
             }
         }
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
+        repaint();
     }
 }
