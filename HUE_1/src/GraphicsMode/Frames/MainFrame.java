@@ -12,6 +12,7 @@ import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.io.IOException;
+import java.util.Objects;
 
 public class MainFrame extends JFrame {
     private Board board;
@@ -29,14 +30,14 @@ public class MainFrame extends JFrame {
         try {
             FileManager.setup(true);
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null,  Constants.FILE_SETUP_ERROR_MESSAGE + e.getMessage(),
-                    "Error while setting up application files", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,  Constants.FILE_READ_ERROR_MESSAGE + e.getMessage(),
+                    "Error while reading board files", JOptionPane.ERROR_MESSAGE);
         }
 
         /* set up icons */
-        frameIcon = new ImageIcon("resources/images/seedling-solid.png");
-        playIcon = new ImageIcon("resources/images/play-solid.png");
-        pauseIcon = new ImageIcon("resources/images/pause-solid.png");
+        frameIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/seedling-solid.png")));
+        playIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/play-solid.png")));
+        pauseIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/pause-solid.png")));
 
         playIcon = Utils.resizeIcon(playIcon, 30, 36);
         pauseIcon = Utils.resizeIcon(pauseIcon, 30, 36);

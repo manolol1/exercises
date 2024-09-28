@@ -13,6 +13,10 @@ public class Constants {
             An error occurred while setting up the app directory.
             Creating boards from files might not work!
             Details:\s""";
+    public static final String FILE_READ_ERROR_MESSAGE = """
+            An error occurred while reading board files.
+            Please try again!
+            Details:\s""";
 
     // GUI
     public static final Dimension DEFAULT_MAIN_FRAME_SIZE = new Dimension(1200, 800);

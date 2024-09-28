@@ -2,6 +2,7 @@ package General;
 
 public class Board {
     private boolean[][] boardMatrix;
+    boolean[][] nextMatrix;
     private int generation = 1;
 
     /** Create a new board object from a 2D-Array
@@ -9,24 +10,24 @@ public class Board {
      */
     public Board(boolean[][] alive) {
         this.boardMatrix = alive;
+        this.nextMatrix = new boolean[boardMatrix.length][boardMatrix[0].length];
     }
 
     /** Simulate the next generation */
     public void simulate() {
-        boolean[][] nextMatrix = new boolean[boardMatrix.length][boardMatrix[0].length];
         generation++;
 
         for (int i = 0; i < boardMatrix.length; i++) {
             for (int j = 0; j < boardMatrix[i].length; j++) {
                 int aliveNeighbours = countAliveNeighbours(i, j);
 
-                if ((aliveNeighbours == 3) || (aliveNeighbours == 2 && boardMatrix[i][j])) {
-                    nextMatrix[i][j] = true;
-                }
+                nextMatrix[i][j] = (aliveNeighbours == 3) || (aliveNeighbours == 2 && boardMatrix[i][j]);
             }
         }
 
+        boolean[][] temp = boardMatrix;
         boardMatrix = nextMatrix;
+        nextMatrix = temp;
     }
 
     /** Simulate multiple generations */

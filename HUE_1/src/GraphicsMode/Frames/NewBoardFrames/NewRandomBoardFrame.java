@@ -20,6 +20,7 @@ public class NewRandomBoardFrame extends JFrame {
         this.getContentPane().setBackground(Constants.COLOR_BACKGROUND_2);
         this.setLayout(new BorderLayout());
 
+        // headline
         JLabel infoLabel = new JLabel("Create a new random board!", SwingConstants.CENTER);
         infoLabel.setForeground(Constants.COLOR_FOREGROUND);
         infoLabel.setFont(infoLabel.getFont().deriveFont((float) 20));

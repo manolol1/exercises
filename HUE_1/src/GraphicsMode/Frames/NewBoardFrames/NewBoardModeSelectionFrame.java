@@ -18,12 +18,14 @@ public class NewBoardModeSelectionFrame extends JFrame {
         this.getContentPane().setBackground(Constants.COLOR_BACKGROUND_2);
         this.setLayout(new BorderLayout());
 
+        // headline
         JLabel infoLabel = new JLabel("Select a board generation mode!", SwingConstants.CENTER);
         infoLabel.setForeground(Constants.COLOR_FOREGROUND);
         infoLabel.setFont(infoLabel.getFont().deriveFont((float) 20));
         infoLabel.setPreferredSize(new Dimension(200, 80));
         this.add(infoLabel, BorderLayout.NORTH);
 
+        // Buttons
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
         buttonPanel.setBackground(Constants.COLOR_BACKGROUND_2);
 
@@ -37,7 +39,8 @@ public class NewBoardModeSelectionFrame extends JFrame {
         MyButton fromFileButton = new MyButton("From file");
         fromFileButton.setPreferredSize(new Dimension(150, 40));
         fromFileButton.addActionListener(e -> {
-            // Action for fromFileButton
+            this.dispose();
+            new NewBoardFromFileFrame(mainFrame);
         });
 
         MyButton cancelButton = new MyButton("Cancel");
