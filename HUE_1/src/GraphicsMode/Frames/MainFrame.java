@@ -45,7 +45,7 @@ public class MainFrame extends JFrame {
         /* set up JFrame */
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(Constants.DEFAULT_MAIN_FRAME_SIZE);
-        this.setMinimumSize(new Dimension(800, 600));
+        this.setMinimumSize(new Dimension(1000, 700));
         this.setTitle("Game of Life");
         this.setLocationRelativeTo(null); // center window on screen
         this.setIconImage(frameIcon.getImage());
@@ -114,20 +114,20 @@ public class MainFrame extends JFrame {
         JPanel delayPanel = new JPanel(new FlowLayout());
         delayPanel.setBackground(Constants.COLOR_BACKGROUND_2);
 
-        JLabel delayLabel = new JLabel("Simulation Delay:   ");
+        JLabel delayLabel = new JLabel("   Simulation Delay:   ");
         delayLabel.setForeground(Constants.COLOR_FOREGROUND);
         delayLabel.setFont(delayLabel.getFont().deriveFont((float) 16));
 
-        JLabel delayValueLabel = new JLabel("   " + autoDelay);
+        JLabel delayValueLabel = new JLabel("   " + autoDelay + " ms");
         delayValueLabel.setForeground(Constants.COLOR_FOREGROUND);
         delayValueLabel.setFont(delayValueLabel.getFont().deriveFont((float) 16));
 
-        MySlider delaySlider = new MySlider(100, 3000, 1000);
-        delaySlider.setPreferredSize(new Dimension(270, 30));
+        MySlider delaySlider = new MySlider(50, 3000, 1000);
+        delaySlider.setPreferredSize(new Dimension(400, 30));
         delaySlider.addChangeListener(e -> {
             autoDelay = delaySlider.getValue();
             autoPlayThread.setDelay(autoDelay);
-            delayValueLabel.setText(("   " + autoDelay));
+            delayValueLabel.setText(("   " + autoDelay + " ms"));
         });
 
         delayPanel.add(delayLabel);

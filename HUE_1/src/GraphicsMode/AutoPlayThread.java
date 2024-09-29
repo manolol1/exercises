@@ -2,6 +2,8 @@ package GraphicsMode;
 
 import General.Board;
 
+import java.awt.*;
+
 public class AutoPlayThread extends Thread{
     private long delay;
     private BoardCanvas canvas;
@@ -43,6 +45,7 @@ public class AutoPlayThread extends Thread{
 
             board.simulate();
             canvas.repaint();
+
             try {
                 Thread.sleep(delay);
             } catch (InterruptedException e) {

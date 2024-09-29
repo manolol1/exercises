@@ -62,4 +62,12 @@ public class BoardCanvas  extends JPanel {
         this.board = board;
         repaint();
     }
+
+    @Override
+    public void repaint() {
+        super.repaint();
+        // Fix lag when mouse isn't moving (Source: https://stackoverflow.com/questions/19480076/java-animation-stutters-when-not-moving-mouse-cursor)
+        Toolkit.getDefaultToolkit().sync();
+
+    }
 }
