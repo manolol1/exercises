@@ -10,6 +10,7 @@ package EX1;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("EX1");
+        System.out.println("EX1\n\n");
+
     }
 }
