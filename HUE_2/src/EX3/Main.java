@@ -75,6 +75,10 @@ public class Main {
             }
 
             case 3: {
+                int value = InputUtils.intInput(Integer.MIN_VALUE, Integer.MAX_VALUE, "Zahl zum Einfügen eingeben: ");
+                int index = InputUtils.intInput(0, ar.length, "Index zum Einfügen eingeben: ");
+
+                ar = ArrayUtils.insert(ar, index, value);
                 break;
             }
 
