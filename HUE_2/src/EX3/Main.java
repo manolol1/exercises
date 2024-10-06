@@ -21,13 +21,9 @@ public class Main {
                     (5)   Löschen der Zahl(en) x
                     (6)   Anhängen
                     (7)   Array um k Stellen vergrößern
-                    (8)   Suchen
-                    (9)   Doppelte löschen
-                    (10)  Sortieren
-                    (11)  Verschieben
-                    (12)  Spiegeln
-                    (13)  Ausgabe
-                    (14)  Ende
+                    (8)   Sortieren
+                    (9)   Ausgabe
+                    (10)  Ende
                     """;
 
     public static int[] ar = null;
@@ -83,47 +79,43 @@ public class Main {
             }
 
             case 4: {
+                int index = InputUtils.intInput(0, ar.length - 1, "Index der zu löschenden Zahl eingeben: ");
+                ar = ArrayUtils.delete(ar, index);
                 break;
             }
 
             case 5: {
+                int value = InputUtils.intInput(Integer.MIN_VALUE, Integer.MAX_VALUE, "Zahl zum Löschen eingeben: ");
+                ar = ArrayUtils.deleteAll(ar, value);
                 break;
             }
 
             case 6: {
+                int value = InputUtils.intInput(Integer.MIN_VALUE, Integer.MAX_VALUE, "Zahl zum Anhängen eingeben: ");
+                ar = ArrayUtils.append(ar, value);
                 break;
             }
 
             case 7: {
+                int k = InputUtils.intInput(1, 100000, "Anzahl der Stellen zum Vergrößern eingeben: ");
+                int[] newAr = new int[ar.length + k];
+                ArrayUtils.arrayCopy(ar, newAr);
+                ar = newAr;
                 break;
             }
 
             case 8: {
+                ArrayUtils.sort(ar);
                 break;
             }
+
 
             case 9: {
-                break;
-            }
-
-            case 10: {
-                break;
-            }
-
-            case 11: {
-                break;
-            }
-
-            case 12: {
-                break;
-            }
-
-            case 13: {
                 ArrayUtils.printArray(ar);
                 break;
             }
 
-            case 14: {
+            case 10: {
                 System.out.println("Programm wird beendet...");
                 System.exit(0);
                 break;
