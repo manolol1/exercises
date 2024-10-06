@@ -6,6 +6,7 @@ package EX1;
  * HUE:           02
  * EX:            01
  * Description:
+ * Used Library:  JavaUtils (library for common input and array/matrix operations, I have written mostly in first grade)
  *********************************************/
 
 public class Main {

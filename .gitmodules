@@ -1,1 +1,4 @@
 
+[submodule "HUE_2/src/JavaUtils"]
+	path = HUE_2/src/JavaUtils
+	url = https://github.com/manolol1/JavaUtils.git

@@ -88,6 +88,7 @@ public class MainFrame extends JFrame {
         controlsPanel.setBackground(Constants.COLOR_BACKGROUND_2);
         controlsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 7));
 
+        // next generation button
         MyButton nextGenerationButton = new MyButton("Next Generation");
         nextGenerationButton.setPreferredSize(new Dimension(200, 40));
         nextGenerationButton.addActionListener(e -> {
@@ -96,6 +97,7 @@ public class MainFrame extends JFrame {
         });
         controlsPanel.add(nextGenerationButton);
 
+        // play button (start/pause simulation)
         MyButton playButton = new MyButton(playIcon);
         playButton.setPreferredSize(new Dimension(40, 40));
         playButton.addActionListener(e -> {
@@ -111,6 +113,7 @@ public class MainFrame extends JFrame {
         });
         controlsPanel.add(playButton);
 
+        // simulation delay
         JPanel delayPanel = new JPanel(new FlowLayout());
         delayPanel.setBackground(Constants.COLOR_BACKGROUND_2);
 
