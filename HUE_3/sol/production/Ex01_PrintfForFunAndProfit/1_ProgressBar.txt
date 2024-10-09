@@ -1,0 +1,6 @@
+D:\Projects\Java\Ex01_PrintfForFunAndProfit\sol\production\Ex01_PrintfForFunAndProfit> java Main 1
+Printf for fun and profit:
+________________________________________________________________________________
+Operation progress:  100.00%
+
+D:\Projects\Java\Ex01_PrintfForFunAndProfit\sol\production\Ex01_PrintfForFunAndProfit> 

@@ -1,0 +1,6 @@
+D:\Projects\Java\Ex01_PrintfForFunAndProfit\sol\production\Ex01_PrintfForFunAndProfit> java Main 2
+Printf for fun and profit:
+________________________________________________________________________________
+   5:  10|  15:  20|  25:  30|  35:  40|  45:  50|  55:  60|  65:  70|  75:  80|
+
+D:\Projects\Java\Ex01_PrintfForFunAndProfit\sol\production\Ex01_PrintfForFunAndProfit> 

@@ -1,0 +1,20 @@
+D:\Projects\Java\Ex01_PrintfForFunAndProfit\sol\production\Ex01_PrintfForFunAndProfit> java Main 3
+Printf for fun and profit:
+________________________________________________________________________________
+             SUPERMARKET
+--------------------------------------
+Datum: 08.10.2024
+
+SanLucar Erdbeeren 400     1      3.49
+Simply Good Dressing       2      1.49
+Salatschale Mais           2      2.19
+Clever Vanillejoghurt     15      0.45
+Clever Schlagobers 36%     2      1.39
+Clever Eierspätzle         1      3.98
+Clever Bratwürstel dün   117      3.99
+Tomatenmark in der Dos     2      1.09
+--------------------------------------
+SUMME                  EUR      493.37
+======================================
+
+D:\Projects\Java\Ex01_PrintfForFunAndProfit\sol\production\Ex01_PrintfForFunAndProfit> 
