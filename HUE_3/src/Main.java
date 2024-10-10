@@ -180,12 +180,10 @@ public class Main {
  ***********************************************************************/
    public static void printReceipt(String[] product, int[] quantity, double[] itemPrize) {
       final int QUANTITY_SPACE = 4, PRICE_SPACE = 8;
-
       final int NAME_SPACE = RECEIPT_WIDTH - QUANTITY_SPACE - PRICE_SPACE - 4;
-
       String headline = "SUPERMARKET";
 
-      // center headline as well as possible
+      // center headline
       headline = " ".repeat((Math.max((RECEIPT_WIDTH - headline.length()) / 2, 0))) + headline;
       System.out.println(headline);
 
@@ -197,7 +195,14 @@ public class Main {
 
       // print items
       for (int i = 0; i < product.length; i++) {
-         System.out.printf("%-1." + NAME_SPACE + "s  %" + QUANTITY_SPACE + "d  %" + PRICE_SPACE + ".2f%n", product[i], quantity[i], itemPrize[i]);
+         // get current items and convert them to Strings
+         String currentProduct = product[i];
+         String currentQuantity = quantity[i] + "";
+         String currentPrice = itemPrize[i] + "";
+
+         System.out.printf("%-" + NAME_SPACE + "." + NAME_SPACE + "s  ", currentProduct);
+         System.out.printf("%" + QUANTITY_SPACE + "." + QUANTITY_SPACE + "s  ", currentQuantity);
+         System.out.printf("%" + PRICE_SPACE + "." + PRICE_SPACE + "s%n", currentPrice);
       }
    }
 
