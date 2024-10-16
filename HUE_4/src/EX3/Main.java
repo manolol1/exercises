@@ -39,7 +39,7 @@ public class Main {
     }
 
     /**
-     * Calculate factorial of a number
+     * Calculate factorial of a number (recursively)
      * @param n nth factorial
      * @return result
      */
@@ -52,7 +52,7 @@ public class Main {
     }
 
     /**
-     * Calculate factorial of a number
+     * Calculate factorial of a number (iteratively)
      * @param n nth factorial
      * @return result
      */
