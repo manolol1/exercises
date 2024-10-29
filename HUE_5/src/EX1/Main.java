@@ -22,6 +22,13 @@ public class Main {
 
         char[] text = "Hello World!".toCharArray();
         reverseText(text);
+
+        System.out.println();
+
+        System.out.println(isPalindrome("Lagerregal"));
+        System.out.println(isPalindrome("Hallo"));
+
+        System.out.println(digitSum(123456789));
     }
 
     /**
@@ -96,5 +103,32 @@ public class Main {
         System.arraycopy(text, 0, newText, 0, text.length - 1);
 
         reverseText(newText);
+    }
+
+    /**
+     * Check if text is a palindrome
+     * @param text text to check
+     * @return true, if text is a palindrome
+     */
+    public static boolean isPalindrome(String text) {
+        text = text.toLowerCase();
+
+        if (text.length() <= 1) return true;
+
+        if (text.charAt(0) != text.charAt(text.length() - 1)) return false;
+
+        isPalindrome(text.substring(1, text.length() - 1));
+
+        return true;
+    }
+
+    /**
+     * Calculate digit sum of a number
+     * @param n number to calculate digit sum from
+     * @return digit sum of n
+     */
+    public static int digitSum(int n) {
+        if (n == 0) return 0;
+        return n % 10 + digitSum(n / 10);
     }
 }
