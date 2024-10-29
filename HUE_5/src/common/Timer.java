@@ -4,6 +4,7 @@ public class Timer {
     private String title;
     private long startTime;
     private long endTime;
+    private long result;
 
     public Timer() {
         new Timer("Timer");
@@ -23,7 +24,7 @@ public class Timer {
         }
 
         endTime = System.nanoTime();
-        long result = endTime - startTime;
+        result = endTime - startTime;
         System.out.printf("%s: took %d ns (%d ms)", title, result, result / 1000000);
     }
 
