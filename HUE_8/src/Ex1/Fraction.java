@@ -36,11 +36,64 @@ public class Fraction {
         if (reduce) reduce();
     }
 
+    public void divide(Fraction divisor) {
+        divide(divisor, true);
+    }
+
+    /**
+     * Divide with another fraction
+     * @param divisor Fraction to divide with
+     * @param reduce If true, the Fraction will be reduced
+     */
+    public void divide(Fraction divisor, boolean reduce) {
+        this.denominator *= divisor.numerator;
+        this.numerator *= divisor.denominator;
+
+        if (reduce) reduce();
+    }
+
+    /**
+     * Add another fraction
+     * @param summand Fraction to add
+     */
     public void add(Fraction summand) {
         add(summand, true);
     }
 
+    /**
+     * Add another fraction
+     * @param summand Fraction to add
+     * @param reduce If true, the Fraction will be reduced
+     */
     public void add(Fraction summand, boolean reduce) {
+        int lcm = lcm(this.denominator, summand.denominator);
+        int adjustedNumerator1 = this.numerator * (lcm / this.denominator);
+        int adjustedNumerator2 = summand.numerator * (lcm / summand.denominator);
+        this.numerator = adjustedNumerator1 + adjustedNumerator2;
+        this.denominator = lcm;
+
+        if (reduce) reduce();
+    }
+
+    /**
+     * Subtract another fraction
+     * @param subtrahend Fraction to subtract
+     */
+    public void subtract(Fraction subtrahend) {
+        subtract(subtrahend, true);
+    }
+
+    /**
+     * Subtract another fraction
+     * @param subtrahend Fraction to subtract
+     * @param reduce If true, the Fraction will be reduced
+     */
+    public void subtract(Fraction subtrahend, boolean reduce) {
+        int lcm = lcm(this.denominator, subtrahend.denominator);
+        int adjustedNumerator1 = this.numerator * (lcm / this.denominator);
+        int adjustedNumerator2 = subtrahend.numerator * (lcm / subtrahend.denominator);
+        this.numerator = adjustedNumerator1 - adjustedNumerator2;
+        this.denominator = lcm;
 
         if (reduce) reduce();
     }
