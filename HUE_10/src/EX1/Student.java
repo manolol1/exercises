@@ -41,6 +41,50 @@ public class Student {
     }
 
     /**
+     * Delete all exams of a specific course
+     * @param courseName name of the course to delete
+     */
+    public void deleteExam(String courseName) {
+        Examination[] newExamList = new Examination[examList.length - 1];
+
+        int i = 0;
+        int j = 0;
+
+        while (i < examList.length) {
+            if (examList[i].getCourse().equals(courseName)) {
+                i++;
+            } else {
+                newExamList[j] = examList[i];
+                i++;
+                j++;
+            }
+        }
+
+        examList = newExamList;
+
+        deleteUniqueCourse(courseName);
+    }
+
+    public void deleteUniqueCourse(String courseName) {
+        String[] newUniqueCourses = new String[uniqueCourses.length - 1];
+
+        int i = 0;
+        int j = 0;
+
+        while (i < uniqueCourses.length) {
+            if (uniqueCourses[i].equals(courseName)) {
+                i++;
+            } else {
+                newUniqueCourses[j] = uniqueCourses[i];
+                i++;
+                j++;
+            }
+        }
+
+        uniqueCourses = newUniqueCourses;
+    }
+
+    /**
      * @return total sum of all marks
      */
     public int getMarkSum() {
@@ -92,6 +136,9 @@ public class Student {
         return (double) getMarkSum(course) / countCourseExams(course);
     }
 
+    /**
+     * @return school report with average grades per subject
+     */
     public String getSchoolReport() {
         StringBuilder sb = new StringBuilder();
 
@@ -104,8 +151,55 @@ public class Student {
         return sb.toString();
     }
 
+    /**
+     * Print the schoolreport from getSchoolReport()
+     */
     public void printSchoolReport() {
         System.out.println(getSchoolReport());
+    }
+
+    /**
+     * Sort the exam list in alphabetical order
+     */
+    public void sortExamList() {
+        int min;
+        Examination temp;
+
+        for (int i = 0; i < examList.length; i++) {
+            min = i;
+            for (int j = i; j < examList.length; j++) {
+                if (examList[j].getCourse().compareTo(examList[min].getCourse()) < 0) {
+                    min = j;
+                }
+            }
+
+            temp = examList[min];
+            examList[min] = examList[i];
+            examList[i] = temp;
+        }
+
+        sortUniqueCourses();
+    }
+
+    /**
+     * Sort the list of unique courses (automatically done when sorting the examlist)
+     */
+    public void sortUniqueCourses() {
+        int min;
+        String temp;
+
+        for (int i = 0; i < examList.length; i++) {
+            min = i;
+            for (int j = i; j < examList.length; j++) {
+                if (uniqueCourses[j].compareTo(uniqueCourses[min]) < 0) {
+                    min = j;
+                }
+            }
+
+            temp = uniqueCourses[min];
+            uniqueCourses[min] = uniqueCourses[i];
+            uniqueCourses[i] = temp;
+        }
     }
 
     @Override
