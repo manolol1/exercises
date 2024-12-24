@@ -3,9 +3,9 @@ package EX1;
 import JavaUtils.JavaUtils;
 
 public class Snail {
-    String name;
-    int maxSpeed;
-    int distance;
+    private final String name;
+    private int maxSpeed;
+    private int distance;
 
     /**
      * Snail that can participate in a SnailRun
@@ -23,9 +23,25 @@ public class Snail {
     }
 
     /**
-     * Move forward by [1;maxSpeed]
+     * Move forward by random distance in range [1;maxSpeed]
      */
     public void creep() {
         this.distance += JavaUtils.random(1, maxSpeed);
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getMaxSpeed() {
+        return maxSpeed;
+    }
+
+    public void setMaxSpeed(int maxSpeed) {
+        this.maxSpeed = maxSpeed;
     }
 }

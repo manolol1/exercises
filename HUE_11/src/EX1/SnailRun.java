@@ -3,12 +3,13 @@ package EX1;
 import java.util.ArrayList;
 
 public class SnailRun {
-    String name;
-    int maxParticipants;
-    ArrayList<Snail> snails;
+    private String name;
+    private final int maxParticipants;
+    private final ArrayList<Snail> snails;
+    private int distance = 100;
 
     /**
-     * Create a new SnailRun
+     * Create a new SnailRun with a default distance of 100
      * @param name Name of the snail run
      * @param maxParticipants Maximum amount of participants - if a snail is added to a full run, an Exception is thrown
      */
@@ -19,16 +20,67 @@ public class SnailRun {
     }
 
     /**
+     * Create a new SnailRun
+     * @param name Name of the snail run
+     * @param maxParticipants Maximum amount of participants - if a snail is added to a full run, an Exception is thrown
+     * @param distance Distance to run
+     */
+    public SnailRun(String name, int maxParticipants, int distance) {
+        this.name = name;
+        this.maxParticipants = maxParticipants;
+        this.snails = new ArrayList<>();
+        this.distance = distance;
+    }
+
+    /**
      * Add a Snail to the SnailRun.
-     * Ideally, every Snail in the SnailRun should have a unique name.
+     * Every Snail in the SnailRun must  have a unique name.
      * @param s Snail to add
      * @throws SnailRunFullException when the SnailRun is already full (no additional snail can be added)
+     * @throws SnailAlreadyExistsException when a snail with the same name already exists in the SnailRun
+     * @throws NullPointerException when the snail is null
      */
-    public void addSnail(Snail s) throws SnailRunFullException {
-        if (snails.size() < maxParticipants) {
-            snails.add(s);
-        } else {
-            throw new SnailRunFullException("The SnailRun is already full!");
+    public void addSnail(Snail s) throws SnailRunFullException, SnailAlreadyExistsException, NullPointerException {
+        if (snails.size() >= maxParticipants) {
+            throw new SnailRunFullException("SnailRun is full");
         }
+        else if (s == null) {
+            throw new NullPointerException("Snail cannot be null");
+        }
+        else if (snailExists(s.getName())) {
+            throw new SnailAlreadyExistsException("Snail with name " + s.getName() + " already exists in the SnailRun");
+        }
+        else {
+            snails.add(s);
+        }
+    }
+
+    /**
+     *  Check if a snail with the given name exists in the snail run
+     * @return true if the snail exists, false otherwise
+     */
+    public boolean snailExists(String name) {
+        for (Snail s : snails) {
+            if (s.getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getMaxParticipants() {
+        return maxParticipants;
+    }
+
+    public int getDistance() {
+        return distance;
     }
 }

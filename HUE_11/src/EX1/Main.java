@@ -3,10 +3,10 @@ package EX1;
 public class Main {
     public static void main(String[] args) {
         SnailRun snailRun1 = new SnailRun("Perger Schneckenmarathon", 42);
-//        BettingOffice bettingOffice = new BettingOffice(snailRun1, 2.0);
-//        bettingOffice.execute();
-//        System.out.println();
-//
+        BettingOffice bettingOffice = new BettingOffice(snailRun1, 2.0);
+        //bettingOffice.execute();
+        System.out.println();
+
         SnailRun snailRun2 = new SnailRun("Iron Snail 2016", 100);
         Snail sissi = new Snail("Sissi", 17);
         snailRun2.addSnail(sissi);
