@@ -7,6 +7,11 @@ public class BettingOffice {
     ArrayList<Bet> bets;
     double factor;
 
+    @Override
+    public String toString() {
+        return String.format("BettingOffice{snailRun=%s, bets=%s, factor=%.2f}", snailRun, bets, factor);
+    }
+
     /**
      * Betting Office
      * @param snailRun SnailRun to bet on
@@ -33,6 +38,30 @@ public class BettingOffice {
             bets.add(newBet);
         } else {
             throw new NullPointerException("Bet cannot be null");
+        }
+    }
+
+    public void execute() {
+        snailRun.startRun();
+
+        if (snailRun.getWinner() == null) {
+            System.out.println("No winner, run is empty");
+            return;
+        }
+
+        String winner = snailRun.getWinner().getName();
+
+        System.out.println("Winner: " + winner);
+
+        if (bets.isEmpty()) {
+            System.out.println("No bets");
+            return;
+        }
+
+        for (Bet bet : bets) {
+            if (bet.snail.equals(winner)) {
+                System.out.println(bet.player + " wins " + (bet.amount * factor));
+            }
         }
     }
 }

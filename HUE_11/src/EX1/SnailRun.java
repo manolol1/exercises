@@ -32,6 +32,11 @@ public class SnailRun {
         this.distance = distance;
     }
 
+    @Override
+    public String toString() {
+        return String.format("SnailRun{name='%s', maxParticipants=%d, snails=%s, distance=%d}", name, maxParticipants, snails, distance);
+    }
+
     /**
      * Add a Snail to the SnailRun.
      * Every Snail in the SnailRun must  have a unique name.
@@ -56,7 +61,28 @@ public class SnailRun {
     }
 
     /**
-     *  Check if a snail with the given name exists in the snail run
+     * Remove a snail from the SnailRun
+     * @param s Snail to remove
+     */
+    public void removeSnail(Snail s) {
+        snails.remove(s);
+    }
+
+    /**
+     * Remove a snail from the SnailRun
+     * @param name Name of the snail to remove
+     */
+    public void removeSnail(String name) {
+        for (Snail s : snails) {
+            if (s.getName().equals(name)) {
+                snails.remove(s);
+                return;
+            }
+        }
+    }
+
+    /**
+     * Check if a snail with the given name exists in the snail run
      * @return true if the snail exists, false otherwise
      */
     public boolean snailExists(String name) {
@@ -66,6 +92,51 @@ public class SnailRun {
             }
         }
         return false;
+    }
+
+    /**
+     * Let every snail creep once
+     */
+    public void letThemCreep() {
+        for (Snail s : snails) {
+            s.creep();
+        }
+    }
+
+    /**
+     * Start the SnailRun and let the snails creep until a winner is found
+     */
+    public void startRun() {
+        if (snails.isEmpty()) {
+            return;
+        }
+
+        while (getWinner() == null) {
+            letThemCreep();
+        }
+    }
+
+    /**
+     * Get the winner of the SnailRun
+     * @return the winning snail or null if no snail has reached the finish line
+     */
+    public Snail getWinner() {
+        if (snails.isEmpty()) {
+            return null;
+        }
+
+        Snail winner = new Snail("winning_condition", 0);
+        winner.setDistance(this.distance);
+        for (Snail s : snails) {
+            if (s.getDistance() > winner.getDistance()) {
+                winner = s;
+            }
+        }
+        if (winner.getDistance() > this.distance) {
+            return winner;
+        } else {
+            return null;
+        }
     }
 
     public String getName() {

@@ -44,4 +44,8 @@ public class Snail {
     public void setMaxSpeed(int maxSpeed) {
         this.maxSpeed = maxSpeed;
     }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
+    }
 }
