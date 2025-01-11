@@ -79,4 +79,12 @@ public class Timer {
 
         return totalTime / repetitions;
     }
+
+    public static long toMilliseconds(long nanoseconds) {
+        return nanoseconds / 1000000;
+    }
+
+    public static double toMillisecondsDouble(long nanoseconds) {
+        return nanoseconds / 1000000.0;
+    }
 }
