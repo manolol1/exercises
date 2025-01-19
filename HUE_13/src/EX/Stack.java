@@ -34,7 +34,7 @@ public class Stack {
             throw new StackFullException("The Stack is already full!");
         }
 
-        items = Main.expandArray(items);
+        items = Main.expandArrayEnd(items);
         items[items.length - 1] = obj;
     }
 
@@ -43,9 +43,9 @@ public class Stack {
      * @return last item from the Stack
      */
     public Object pop() {
-        Object val = items[items.length - 1];
+        Object obj = items[items.length - 1];
         items = Main.shrinkArray(items);
-        return val;
+        return obj;
     }
 
     /**
@@ -62,5 +62,13 @@ public class Stack {
      */
     public boolean isFull() {
         return items.length >= MAX_SIZE;
+    }
+
+    public int getMAX_SIZE() {
+        return MAX_SIZE;
+    }
+
+    public Object[] getItems() {
+        return items;
     }
 }
