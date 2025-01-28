@@ -125,6 +125,32 @@ public class BetterLinkedList {
     }
 
     /**
+     * Remove the Object at the specified index
+     * @param index index of the Object to remove
+     */
+    public void remove(int index) {
+        Item prevItem = this.getItem(index - 1);
+        Item item = prevItem.getNext();
+        prevItem.setNext(item.getNext());
+        size--;
+    }
+
+    /**
+     * Remove the first Object of the list
+     */
+
+    public void removeFirst() {
+        remove(0);
+    }
+
+    /**
+     * Remove the last Object of the list
+     */
+    public void removeLast() {
+        remove(size - 1);
+    }
+
+    /**
      * Get the number of Objects in the list
      * @return size of the list
      */
