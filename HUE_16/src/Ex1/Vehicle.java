@@ -49,7 +49,7 @@ public class Vehicle implements Comparable<Vehicle> {
         }
 
         if (result == 0) {
-            result = (int) (this.getInsurancePremium() - other.getInsurancePremium());
+            result = Double.compare(this.getInsurancePremium(), other.getInsurancePremium());
         }
 
         return result;

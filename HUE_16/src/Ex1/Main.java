@@ -58,7 +58,7 @@ public class Main {
     }
 
     /**
-     * Sort an Array of Objects using the Object's compareTo method
+     * Sort an Array of Vehicles using the Object's compareTo method
      * @param vehicles Array of Vehicles
      */
     private static void sort(Vehicle[] vehicles) {
