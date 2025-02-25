@@ -4,14 +4,21 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        int[] ar1 = {1, 6, 8, 5, 7, 5, 9, 1, 3, 16, 22, 1};
-        int[] ar2 = ArrayUtils.randomArray(1000000, -1000000, 1000000);
+        long startTime = System.currentTimeMillis();
 
-        sort(ar1);
-        System.out.println(Arrays.toString(ar1));
+        //int[] ar1 = {1, 6, 8, 5, 7, 5, 9, 1, 3, 16, 22, 1};
+        int[] ar2 = ArrayUtils.randomArray(1_000_000_000, -10000000, 10000000);
 
+        System.out.printf("Array generated in %d ms\n", System.currentTimeMillis() - startTime);
+
+        //sort(ar1);
+        //System.out.println(Arrays.toString(ar1));
+
+        startTime = System.currentTimeMillis();
         sort(ar2);
-        System.out.println(Arrays.toString(ar2));
+
+        System.out.printf("Array sorted in %d ms\n", System.currentTimeMillis() - startTime);
+        //System.out.println(Arrays.toString(ar2));
     }
 
     /**
