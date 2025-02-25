@@ -46,9 +46,21 @@ public class Main {
         sortByCategory(ar);
         printAll(ar);
 
+        // Test with null
+        Vehicle[] ar2 = new Vehicle[8];
+        assert getCheapest(ar2) == null;
+        assert getMostExpensive(ar2) == null;
     }
 
+    /**
+     * Sort an Array of Vehicles by Category
+     * @param vehicles Array of Vehicles
+     */
     public static void sortByCategory(Vehicle[] vehicles) {
+        if (vehicles == null) {
+            return;
+        }
+
         ArrayList<Truck> trucks = new ArrayList<>();
         ArrayList<FluidTruck> fluidTrucks = new ArrayList<>();
         ArrayList<Car> cars = new ArrayList<>();
@@ -68,26 +80,39 @@ public class Main {
             }
         }
 
-        System.arraycopy(cars.toArray(new Vehicle[0]), 0, vehicles, 0, cars.size());
-        System.arraycopy(trucks.toArray(new Vehicle[0]), 0, vehicles, cars.size() - 1, trucks.size());
-        System.arraycopy(fluidTrucks.toArray(new Vehicle[0]), 0, vehicles, cars.size() + trucks.size() - 2, fluidTrucks.size());
-        System.arraycopy(other.toArray(new Vehicle[0]), 0, vehicles, trucks.size() + cars.size() + fluidTrucks.size() - 3, other.size());
+        int index = 0;
+        System.arraycopy(cars.toArray(new Vehicle[0]), 0, vehicles, index, cars.size());
+        index += cars.size();
+        System.arraycopy(trucks.toArray(new Vehicle[0]), 0, vehicles, index, trucks.size());
+        index += trucks.size();
+        System.arraycopy(fluidTrucks.toArray(new Vehicle[0]), 0, vehicles, index, fluidTrucks.size());
+        index += fluidTrucks.size();
+        System.arraycopy(other.toArray(new Vehicle[0]), 0, vehicles, index, other.size());
     }
 
     /**
      * Get the Vehicle with the lowest insurance premium in an Array of Vehicles
-     * Returns null, if any vehicle is null
+     * Returns null, if all vehicles are null
      * @param vehicles array of Vehicles
      * @return Vehicle with the cheapest insurance premium
      */
     private static Vehicle getCheapest(Vehicle[] vehicles) {
-        if (vehicles == null || vehicles[1] == null) {
+        if (vehicles == null) {
             return null;
         }
 
         Vehicle cheapest = vehicles[0];
 
         for (Vehicle v : vehicles) {
+            if (v == null) {
+                continue;
+            }
+
+            if (cheapest == null) {
+                cheapest = v;
+                continue;
+            }
+
             if (v.getInsurancePremium() < cheapest.getInsurancePremium()) {
                 cheapest = v;
             }
@@ -103,13 +128,22 @@ public class Main {
      * @return Vehicle with the highest insurance premium
      */
     private static Vehicle getMostExpensive(Vehicle[] vehicles) {
-        if (vehicles == null || vehicles[1] == null) {
+        if (vehicles == null) {
             return null;
         }
 
         Vehicle mostExpensive = vehicles[0];
 
         for (Vehicle v : vehicles) {
+            if (v == null) {
+                continue;
+            }
+
+            if (mostExpensive == null) {
+                mostExpensive = v;
+                continue;
+            }
+
             if (v.getInsurancePremium() > mostExpensive.getInsurancePremium()) {
                 mostExpensive = v;
             }

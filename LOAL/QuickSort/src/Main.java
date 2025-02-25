@@ -5,13 +5,13 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
         int[] ar1 = {1, 6, 8, 5, 7, 5, 9, 1, 3, 16, 22, 1};
-        int[] ar2 = ArrayUtils.randomArray(100000, -100000, 100000);
+        int[] ar2 = ArrayUtils.randomArray(1000000, -1000000, 1000000);
 
         sort(ar1);
         System.out.println(Arrays.toString(ar1));
 
         sort(ar2);
-        //System.out.println(Arrays.toString(ar2));
+        System.out.println(Arrays.toString(ar2));
     }
 
     /**
@@ -26,17 +26,15 @@ public class Main {
 
 
     private static void sort(int[] ar, int begin, int end) {
-        if (begin < end) {
+        if (end - begin + 1 <= 10) { // Use Insertion Sort for small subarrays
+            insertionSort(ar, begin, end);
+        } else {
             int partitionIndex = partition(ar, begin, end);
-
-            if (end - begin >= 5) {
-                sort(ar, begin, partitionIndex - 1);
-                sort(ar, partitionIndex + 1, end);
-            }
+            sort(ar, begin, partitionIndex - 1);
+            sort(ar, partitionIndex + 1, end);
         }
-
-        insertionSort(ar);
     }
+
 
     private static int partition(int[] ar, int begin, int end) {
         int pivot = findPivot(ar, begin, end);
@@ -64,26 +62,22 @@ public class Main {
      */
     public static int findPivot(int[] ar, int begin, int end) {
         int[] candidates = {ar[begin], ar[end - begin / 2], ar[end]};
-        insertionSort(candidates);
+        insertionSort(candidates, 0, 2);
 
         return candidates[1];
     }
 
-    public static void insertionSort(int[] ar) {
-        int n = ar.length;
-        int minIndex, temp;
+    public static void insertionSort(int[] ar, int begin, int end) {
+        for (int i = begin + 1; i <= end; i++) {
+            int key = ar[i];
+            int j = i - 1;
 
-        for (int i = 0; i < n; i++) {
-            minIndex = i;
-            for (int j = i; j < n; j++) {
-                if (ar[j] < ar[minIndex]) {
-                    minIndex = j;
-                }
+            while (j >= begin && ar[j] > key) {
+                ar[j + 1] = ar[j];
+                j--;
             }
-
-            temp = ar[i];
-            ar[i] = ar[minIndex];
-            ar[minIndex] = temp;
+            ar[j + 1] = key;
         }
     }
+
 }
