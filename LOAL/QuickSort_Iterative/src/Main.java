@@ -5,13 +5,11 @@ import java.util.Stack;
 
 public class Main {
     public static void main(String[] args) {
-        long startTime = System.currentTimeMillis();
-
         int[] ar1 = {1, 6, 8, 5, 7, 5, 9, 1, 3, 16, 22, 1};
-        //int[] ar2 = ArrayUtils.randomArray(10_000_000, -10000000, 10000000);
+        int[] ar2 = ArrayUtils.randomArray(10_000_000, -10000000, 10000000);
 
-        sort(ar1);
-        System.out.println(Arrays.toString(ar1));
+        sort(ar2);
+        System.out.println(Arrays.toString(ar2));
 
     }
 
@@ -33,21 +31,22 @@ public class Main {
 
 
         while (!s.empty()) {
+            // get last begin and end from Stack
             int b = s.peek()[0];
             int e = s.pop()[1];
 
-            int partitionIndex = partition(ar, b, e);
-            s.push(new int[]{b, partitionIndex - 1});
-            s.push(new int[]{partitionIndex + 1, e});
+            if (e - b < 10) {
+                insertionSort(ar, b, e); // use insertion sort for small subarrays
+            } else {
+                int partitionIndex = partition(ar, b, e);
+                if (b < partitionIndex - 1) {
+                    s.push(new int[]{b, partitionIndex - 1});
+                }
+                if (partitionIndex + 1 < e) {
+                    s.push(new int[]{partitionIndex + 1, e});
+                }
+            }
         }
-
-//        if (end - begin + 1 <= 10) { // Use Insertion Sort for small subarrays
-//            insertionSort(ar, begin, end);
-//        } else {
-//            int partitionIndex = partition(ar, begin, end);
-//            sort(ar, begin, partitionIndex - 1);
-//            sort(ar, partitionIndex + 1, end);
-//        }
     }
 
 
@@ -76,7 +75,7 @@ public class Main {
      * Find optimal pivot (median-of-three)
      */
     public static int findPivot(int[] ar, int begin, int end) {
-        int[] candidates = {ar[begin], ar[end - begin / 2], ar[end]};
+        int[] candidates = {ar[begin], ar[(end - begin) / 2], ar[end]};
         insertionSort(candidates, 0, 2);
 
         return candidates[1];
@@ -94,6 +93,4 @@ public class Main {
             ar[j + 1] = key;
         }
     }
-
-
 }
