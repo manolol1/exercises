@@ -1,0 +1,30 @@
+name: Generate Javadoc
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  javadoc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '17'
+
+      - name: Generate Javadoc
+        run: |
+          mkdir -p docs
+          javadoc -d docs *.java
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          token: ${{ secrets.GH_PAGES_PAT }}
+          branch: gh-pages
+          folder: docs
